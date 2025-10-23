@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Святилище Психо-Андрія: Культ Дібрівських Лісів</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 15px #66fcf1; }
+            50% { transform: scale(1.02); box-shadow: 0 0 25px #45a29e; }
+            100% { transform: scale(1); box-shadow: 0 0 15px #66fcf1; }
+        }
+
+        @keyframes teaSteam {
+            0% { transform: translateY(0) scale(0.5); opacity: 0.5; }
+            100% { transform: translateY(-50px) scale(1.2); opacity: 0; }
+        }
+
+        body {
+            background: linear-gradient(rgba(26, 26, 29, 0.8), rgba(26, 26, 29, 0.8)), url('https://i.pinimg.com/originals/8d/f3/0d/8df30db43d2c7f4a56c7028d7b326046.gif') no-repeat center center fixed;
+            background-size: cover;
+            color: #c5c6c7;
+            font-family: 'Spectral', serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            line-height: 1.8;
+            animation: fadeIn 2s ease-in-out;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewport="0 0 100 100" style="fill:black;font-size:12px;"><text y="50%">🍵</text></svg>') 8 8, auto;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 30px;
+            background-color: rgba(43, 45, 49, 0.95);
+            border: 3px solid #66fcf1;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(102, 252, 241, 0.4);
+            animation: pulse 4s infinite ease-in-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 4.5rem;
+            color: #66fcf1;
+            cursor: pointer;
+            user-select: none;
+            text-shadow: 0 0 20px #66fcf1, 0 0 30px #45a29e;
+            transition: color 0.4s ease-in-out, text-shadow 0.4s ease-in-out;
+            margin-bottom: 20px;
+        }
+
+        h1:hover {
+            color: #45a29e;
+            text-shadow: 0 0 25px #45a29e, 0 0 40px #66fcf1;
+        }
+
+        h2 {
+            font-family: 'Cinzel Decorative', serif;
+            color: #66fcf1;
+            border-bottom: 2px solid #45a29e;
+            padding-bottom: 15px;
+            margin-top: 30px;
+            font-size: 2rem;
+            text-shadow: 0 0 10px rgba(102, 252, 241, 0.5);
+        }
+
+        ol {
+            text-align: left;
+            padding-left: 40px;
+            margin-top: 30px;
+            list-style: none; /* Прибираємо стандартні маркери */
+            counter-reset: rule-counter; /* Створюємо лічильник */
+        }
+
+        li {
+            margin-bottom: 20px;
+            line-height: 1.7;
+            font-size: 1.2rem;
+            position: relative;
+            padding-left: 35px; /* Залишаємо місце для кастомних маркерів */
+            transition: transform 0.2s ease-out;
+        }
+
+        li:hover {
+            transform: translateX(5px);
+            color: #9effa1;
+        }
+
+        /* Кастомні маркери для списку */
+        li::before {
+            counter-increment: rule-counter; /* Збільшуємо лічильник */
+            content: "◆ " counter(rule-counter) "."; /* Виводимо маркер та номер */
+            color: #66fcf1;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+
+        .tea-trigger {
+            color: #9effa1;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: underline dotted #45a29e;
+            transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+            position: relative; /* Для ефекту пари */
+            display: inline-block; /* Щоб span не займав всю ширину */
+            padding: 2px 0;
+            user-select: none;
+        }
+
+        .tea-trigger:hover {
+            color: #ffffff;
+            background-color: rgba(75, 107, 76, 0.4);
+        }
+
+        /* Стилі для "пари" над чаєм */
+        .tea-steam {
+            position: absolute;
+            bottom: 100%; /* Над текстом */
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2em;
+            opacity: 0;
+            animation: teaSteam 3s infinite ease-out;
+            color: #e0f2f1;
+            pointer-events: none; /* Щоб не блокував кліки */
+            text-shadow: 0 0 5px #e0f2f1;
+        }
+        .tea-trigger:hover .tea-steam {
+            animation-play-state: running;
+        }
+
+        #hidden-elf-image {
+            display: none;
+            width: 300px;
+            height: auto;
+            margin: 30px auto;
+            border: 4px solid #66fcf1;
+            border-radius: 10px;
+            box-shadow: 0 0 25px rgba(102, 252, 241, 0.7);
+            transition: all 0.5s ease-in-out;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        #hidden-elf-image.show {
+            display: block;
+            transform: scale(1.05);
+        }
+
+        .cult-button {
+            background-color: #66fcf1;
+            color: #1a1a1d;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.3rem;
+            font-family: 'Cinzel Decorative', serif;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            margin-top: 30px;
+            box-shadow: 0 0 15px rgba(102, 252, 241, 0.7);
+        }
+
+        .cult-button:hover {
+            background-color: #45a29e;
+            color: #ffffff;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 0 25px rgba(69, 162, 158, 0.9);
+        }
+
+        #cult-message {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            color: #9effa1;
+            font-style: italic;
+            display: none;
+            animation: fadeIn 1s ease-out;
+        }
+
+        /* Око Андрія */
+        #andriy-eye {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 70px;
+            background-color: #1a1a1d;
+            border-radius: 50%;
+            border: 3px solid #66fcf1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(102, 252, 241, 0.6);
+            z-index: 1000;
+        }
+
+        #andriy-pupil {
+            width: 30px;
+            height: 30px;
+            background-color: #9effa1; /* Зіниця - зелена */
+            border-radius: 50%;
+            position: absolute;
+            transition: all 0.1s linear;
+        }
+        
+        #rune-display {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.5rem;
+            color: #ffcc00; /* Золотистий колір для рун */
+            margin-top: 20px;
+            min-height: 40px; /* Щоб блок не стрибав */
+            display: none;
+        }
+
+        /* Рунічний алфавіт - прихований блок */
+        #rune-alphabet {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 2px solid #ffcc00;
+            border-radius: 8px;
+            color: #ffcc00;
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.2em;
+            text-align: left;
+        }
+
+        #rune-alphabet p {
+            margin-bottom: 10px;
+        }
+
+        #rune-alphabet strong {
+            color: #66fcf1;
+        }
+
+        .ritual-button {
+            background-color: #e65100; /* Помаранчевий для ритуалів */
+            color: #ffffff;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            font-family: 'Spectral', serif;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(230, 81, 0, 0.7);
+        }
+
+        .ritual-button:hover {
+            background-color: #bf360c;
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(230, 81, 0, 0.9);
+        }
+
+        #ritual-progress {
+            margin-top: 15px;
+            font-size: 1.1em;
+            color: #ffcc00;
+            min-height: 30px; /* Щоб блок не стрибав */
+            display: none; /* Приховано до початку ритуалу */
+        }
+
+        #hidden-video-container {
+            display: none;
+            margin-top: 30px;
+            background-color: rgba(0,0,0,0.8);
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #ffcc00;
+            box-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
+        }
+        #hidden-video {
+            width: 100%;
+            max-width: 560px; /* Стандартна ширина відео */
+            height: 315px; /* Стандартна висота відео */
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Загальний стиль для "шепоту" */
+        .whisper-text {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #ffcc00;
+            padding: 5px 10px;
+            border-radius: 5px;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-out;
+            z-index: 10;
+        }
+        .whisper-anchor:hover .whisper-text {
+            opacity: 1;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="andriy-eye">
+        <div id="andriy-pupil"></div>
+    </div>
+
+    <div class="container">
+        <h1 id="main-heading" class="whisper-anchor">АНДРІЙ прийди!
+            <span class="whisper-text" style="top: -40px; left: 50%; transform: translateX(-50%);">"Він вже йде... можливо"</span>
+        </h1>
+        
+        <img src="https://i.pinimg.com/564x/07/34/7d/07347d3f1a04f210a501a35fb31f13b6.jpg" 
+             alt="Ельф Асасін" 
+             id="hidden-elf-image">
+
+        <button class="cult-button" id="join-cult-button">Приєднатися до Культу Психо-Андрія</button>
+        <p id="cult-message"></p>
+
+        <h2>📜 Святі правила культу Психо-Андрія</h2>
+        
+        <ol>
+            <li>Вір лише у Психо-Андрія, Ельфа Асасіна з Дібрівських лісів, бо лише він знає шлях між тінню й світлом.</li>
+            
+            <li>Не зневажай <span class="tea-trigger whisper-anchor">чай<span class="whisper-text" style="top: -30px; left: 50%; transform: translateX(-50%);">"Рідина мудрості"</span><span class="tea-steam">♨</span></span>, бо то є священний напій, що відкриває розум і серце до мудрості Андрія.</li>
+            
+            <li>Коли вариш <span class="tea-trigger whisper-anchor">чай<span class="whisper-text" style="top: -30px; left: 50%; transform: translateX(-50%);">"Шепоти його ім'я"</span><span class="tea-steam">♨</span></span> — шепочи ім’я Андрія, аби дух його благословив напій і день твій був спокійним.</li>
+            
+            <li>Не зраджуй братів і сестер культу, бо спільнота — це ліс, і кожен листок важливий.</li>
+            
+            <li>Вночі, при повному місяці, залишай чашку <span class="tea-trigger whisper-anchor">чаю<span class="whisper-text" style="top: -30px; left: 50%; transform: translateX(-50%);">"Для Духа Лісу"</span><span class="tea-steam">♨</span></span> на підвіконні — то подяка Андрію за його захист від темних думок.</li>
+            
+            <li>Пам’ятай: Психо-Андрій бачить серце, не лице. Будь щирим, навіть якщо трохи божевільним.</li>
+            
+            <li>Хто сміється над Ельфом — того тіні поженуть, а <span class="tea-trigger whisper-anchor">чай<span class="whisper-text" style="top: -30px; left: 50%; transform: translateX(-50%);">"Гіркий, як доля ворогів"</span><span class="tea-steam">♨</span></span> йому завжди буде гіркий.</li>
+            
+            <li>Розповідай про Андрія, але не нав’язуй віру — істина знаходить лише тих, хто готовий її смакувати, як <span class="tea-trigger whisper-anchor">чай<span class="whisper-text" style="top: -30px; left: 50%; transform: translateX(-50%);">"Смак просвітлення"</span><span class="tea-steam">♨</span></span>.</li>
+            
+            <li>Не лінуйся інакше тебе забере відьма</li>
+            
+            <li>Бий москалів 1 раз в тиждень як дань Великому Все Андрію</li>
+            
+            <li>І найголовніше: кожен ковток <span class="tea-trigger whisper-anchor">чаю<span class="whisper-text" style="top: -30px; left: 50%; transform: translateX(-50%);">"Обітниця вірності"</span><span class="tea-steam">♨</span></span> — це обітниця миру, сили й трохи безумства, бо Психо-Андрій любить таких, як ти.</li>
+        </ol>
+
+        <button class="ritual-button" id="ritual-button">Ініціація Чайним Ритуалом</button>
+        <p id="ritual-progress"></p>
+
+        <div id="rune-display"></div>
+
+        <div id="rune-alphabet">
+            <h3>Рунічний Алфавіт Дібрівських Лісів:</h3>
+            <p><strong>A:</strong> Андрій (Начало)</p>
+            <p><strong>B:</strong> Безумство (Шлях)</p>
+            <p><strong>C:</strong> Чай (Просвітлення)</p>
+            <p><strong>D:</strong> Діброва (Обитель)</p>
+            <p><strong>E:</strong> Ельф (Магія)</p>
+            <p>...і так далі, але тільки Андрій знає повний переклад.</p>
+        </div>
+
+        <div id="hidden-video-container">
+            <h3>Приховане відео посвяти:</h3>
+            <iframe id="hidden-video" width="560" height="315" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <audio id="tea-sound" src="https://www.soundjay.com/buttons/beep-07a.mp3" preload="auto"></audio>
+    <audio id="heading-sound" src="https://www.soundjay.com/buttons/button-10.mp3" preload="auto"></audio>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mainHeading = document.getElementById('main-heading');
+            const hiddenElfImage = document.getElementById('hidden-elf-image');
+            const teaTriggers = document.querySelectorAll('.tea-trigger');
+            const joinCultButton = document.getElementById('join-cult-button');
+            const cultMessage = document.getElementById('cult-message');
+            const andriyPupil = document.getElementById('andriy-pupil');
+            const runeDisplay = document.getElementById('rune-display');
+            const runeAlphabet = document.getElementById('rune-alphabet');
+            const ritualButton = document.getElementById('ritual-button');
+            const ritualProgress = document.getElementById('ritual-progress');
+            const hiddenVideoContainer = document.getElementById('hidden-video-container');
+            const hiddenVideo = document.getElementById('hidden-video');
+
+            // Звукові ефекти
+            const teaSound = document.getElementById('tea-sound');
+            const headingSound = document.getElementById('heading-sound');
+
+            // --- ПОСХАЛКА №1: Клік на заголовок "АНДРІЙ прийди" ---
+            mainHeading.addEventListener('click', () => {
+                hiddenElfImage.classList.toggle('show');
+                headingSound.play(); // Відтворюємо звук
+                if (hiddenElfImage.classList.contains('show')) {
+                    console.log('Ти знайшов Ельфа Асасіна! Його мудрість передається через погляд.');
+                    runeDisplay.textContent = 'Мудрість Дібрівських Лісів відкривається...';
+                } else {
+                    runeDisplay.textContent = '';
+                }
+            });
+
+            // --- ПОСХАЛКА №2: Клік на слово "чай" ---
+            teaTriggers.forEach(trigger => {
+                trigger.addEventListener('click', () => {
+                    alert('🍵 О, так, цей священний нектар! Психо-Андрій відчуває твою спрагу мудрості. 🍵');
+                    teaSound.play(); // Відтворюємо звук
+                });
+            });
+
+            // --- ПОСХАЛКА №3: Кнопка "Приєднатися до Культу" ---
+            joinCultButton.addEventListener('click', () => {
+                cultMessage.textContent = 'Андрій вже знає про тебе. Він бачить тебе навіть крізь екран. Просто пий чай і чекай. Ласкаво просимо! (Не телефонуйте, ми зателефонуємо вам. Можливо.)';
+                cultMessage.style.display = 'block';
+                console.log('Дякуємо за приєднання! Ваша заявка обробляється... десь у Дібрівських лісах.');
+            });
+
+            // --- ПОСХАЛКА №4: "Око Андрія" стежить за курсором ---
+            document.addEventListener('mousemove', (e) => {
+                const eye = document.getElementById('andriy-eye');
+                const pupil = document.getElementById('andriy-pupil');
+                const eyeRect = eye.getBoundingClientRect();
+
+                const eyeCenterX = eyeRect.left + eyeRect.width / 2;
+                const eyeCenterY = eyeRect.top + eyeRect.height / 2;
+
+                const angle = Math.atan2(e.clientY - eyeCenterY, e.clientX - eyeCenterX);
+                const distance = Math.min(eyeRect.width / 4, Math.sqrt(
+                    Math.pow(e.clientX - eyeCenterX, 2) +
+                    Math.pow(e.clientY - eyeCenterY, 2)
+                ));
+
+                const pupilX = distance * Math.cos(angle);
+                const pupilY = distance * Math.sin(angle);
+
+                pupil.style.transform = `translate(${pupilX}px, ${pupilY}px)`;
+            });
+
+            // --- ПОСХАЛКА №5: Секретна клавіша 'A' для рун ---
+            document.addEventListener('keydown', (event) => {
+                if (event.key.toLowerCase() === 'a') {
+                    runeAlphabet.style.display = runeAlphabet.style.display === 'block' ? 'none' : 'block';
+                    if (runeAlphabet.style.display === 'block') {
+                        console.log('Ти активував Рунічний Алфавіт! Секрети Дібрівських Лісів відкриваються...');
+                    } else {
+                        console.log('Рунічний Алфавіт знову сховався у тіні.');
+                    }
+                }
+            });
+
+            // --- ПОСХАЛКА №6: Ініціація Чайним Ритуалом ---
+            ritualButton.addEventListener('click', () => {
+                ritualProgress.style.display = 'block';
+                ritualProgress.textContent = 'Починаємо ритуал... 0%';
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += 10;
+                    ritualProgress.textContent = `Починаємо ритуал... ${progress}%`;
+                    if (progress >= 100) {
+                        clearInterval(interval);
+                        ritualProgress.textContent = 'Ритуал завершено! Андрій приймає твій дух... і, можливо, твій чай.';
+                        console.log('Чайний ритуал завершено успішно!');
+                        
+                        // Після ритуалу може з'явитися приховане відео
+                        setTimeout(() => {
+                            if (confirm('Бажаєш подивитися "Відео з посвяти"? (Будь обережний, воно містить багато чаю!)')) {
+                                hiddenVideoContainer.style.display = 'block';
+                                // Посилання на смішне або абстрактне відео про чай
+                                hiddenVideo.src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"; // Rick Astley - Never Gonna Give You Up
+                                console.log('Приховане відео посвяти активувалося. Насолоджуйся!');
+                            }
+                        }, 1500);
+                    }
+                }, 300);
+            });
+
+
+            // --- ПОСХАЛКА №7: Консольні повідомлення (додаткові) ---
+            console.log('%cОбережно! Ти зайшов на територію Психо-Андрія.', 'color: #66fcf1; font-size: 1.5em; font-family: "Cinzel Decorative", serif;');
+            console.log('%c"Тіні Лісу бачать твої дії..."', 'font-style: italic; color: #45a29e;');
+            console.log('Секретний код для активації "Гілки мудрості": 1337');
+            // Проста імітація "лічильника"
+            let teaCount = Math.floor(Math.random() * 1000) + 500;
+            console.log(`Кількість випитого чаю Культом: ${teaCount} (за останні 20 хвилин)`);
+            console.warn('Якщо ти бачиш це повідомлення, Андрій вже знає твою IP-адресу. І твоє улюблене печиво.');
+            console.error('ПОМИЛКА 404: Відьма не знайдена. Але вона десь поруч.');
+
+        });
+    </script>
+
+</body>
+</html>
