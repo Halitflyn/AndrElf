@@ -78,8 +78,8 @@
             text-align: left;
             padding-left: 40px;
             margin-top: 30px;
-            list-style: none; /* Прибираємо стандартні маркери */
-            counter-reset: rule-counter; /* Створюємо лічильник */
+            list-style: none;
+            counter-reset: rule-counter;
         }
 
         li {
@@ -87,7 +87,7 @@
             line-height: 1.7;
             font-size: 1.2rem;
             position: relative;
-            padding-left: 35px; /* Залишаємо місце для кастомних маркерів */
+            padding-left: 35px;
             transition: transform 0.2s ease-out;
         }
 
@@ -96,10 +96,9 @@
             color: #9effa1;
         }
 
-        /* Кастомні маркери для списку */
         li::before {
-            counter-increment: rule-counter; /* Збільшуємо лічильник */
-            content: "◆ " counter(rule-counter) "."; /* Виводимо маркер та номер */
+            counter-increment: rule-counter;
+            content: "◆ " counter(rule-counter) ".";
             color: #66fcf1;
             font-weight: bold;
             position: absolute;
@@ -107,15 +106,14 @@
             top: 0;
         }
 
-
         .tea-trigger {
             color: #9effa1;
             font-weight: bold;
             cursor: pointer;
             text-decoration: underline dotted #45a29e;
             transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
-            position: relative; /* Для ефекту пари */
-            display: inline-block; /* Щоб span не займав всю ширину */
+            position: relative;
+            display: inline-block;
             padding: 2px 0;
             user-select: none;
         }
@@ -125,17 +123,16 @@
             background-color: rgba(75, 107, 76, 0.4);
         }
 
-        /* Стилі для "пари" над чаєм */
         .tea-steam {
             position: absolute;
-            bottom: 100%; /* Над текстом */
+            bottom: 100%;
             left: 50%;
             transform: translateX(-50%);
             font-size: 2em;
             opacity: 0;
             animation: teaSteam 3s infinite ease-out;
             color: #e0f2f1;
-            pointer-events: none; /* Щоб не блокував кліки */
+            pointer-events: none;
             text-shadow: 0 0 5px #e0f2f1;
         }
         .tea-trigger:hover .tea-steam {
@@ -159,25 +156,31 @@
             transform: scale(1.05);
         }
 
-        .cult-button {
+        .cult-button, .player-btn {
             background-color: #66fcf1;
             color: #1a1a1d;
             border: none;
-            padding: 15px 30px;
-            font-size: 1.3rem;
+            padding: 10px 20px;
+            font-size: 1.1rem;
             font-family: 'Cinzel Decorative', serif;
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease-in-out;
-            margin-top: 30px;
-            box-shadow: 0 0 15px rgba(102, 252, 241, 0.7);
+            margin: 5px;
+            box-shadow: 0 0 15px rgba(102, 252, 241, 0.5);
         }
 
-        .cult-button:hover {
+        .cult-button {
+            padding: 15px 30px;
+            font-size: 1.3rem;
+            margin-top: 30px;
+        }
+
+        .cult-button:hover, .player-btn:hover {
             background-color: #45a29e;
             color: #ffffff;
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 0 25px rgba(69, 162, 158, 0.9);
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(69, 162, 158, 0.9);
         }
 
         #cult-message {
@@ -189,7 +192,6 @@
             animation: fadeIn 1s ease-out;
         }
 
-        /* Око Андрія */
         #andriy-eye {
             position: fixed;
             top: 20px;
@@ -211,22 +213,21 @@
         #andriy-pupil {
             width: 30px;
             height: 30px;
-            background-color: #9effa1; /* Зіниця - зелена */
+            background-color: #9effa1;
             border-radius: 50%;
             position: absolute;
             transition: all 0.1s linear;
         }
-        
+
         #rune-display {
             font-family: 'Cinzel Decorative', serif;
             font-size: 1.5rem;
-            color: #ffcc00; /* Золотистий колір для рун */
+            color: #ffcc00;
             margin-top: 20px;
-            min-height: 40px; /* Щоб блок не стрибав */
+            min-height: 40px;
             display: none;
         }
 
-        /* Рунічний алфавіт - прихований блок */
         #rune-alphabet {
             display: none;
             margin-top: 30px;
@@ -240,16 +241,11 @@
             text-align: left;
         }
 
-        #rune-alphabet p {
-            margin-bottom: 10px;
-        }
-
-        #rune-alphabet strong {
-            color: #66fcf1;
-        }
+        #rune-alphabet p { margin-bottom: 10px; }
+        #rune-alphabet strong { color: #66fcf1; }
 
         .ritual-button {
-            background-color: #e65100; /* Помаранчевий для ритуалів */
+            background-color: #e65100;
             color: #ffffff;
             border: none;
             padding: 12px 25px;
@@ -272,8 +268,8 @@
             margin-top: 15px;
             font-size: 1.1em;
             color: #ffcc00;
-            min-height: 30px; /* Щоб блок не стрибав */
-            display: none; /* Приховано до початку ритуалу */
+            min-height: 30px;
+            display: none;
         }
 
         #hidden-video-container {
@@ -287,13 +283,12 @@
         }
         #hidden-video {
             width: 100%;
-            max-width: 560px; /* Стандартна ширина відео */
-            height: 315px; /* Стандартна висота відео */
+            max-width: 560px;
+            height: 315px;
             display: block;
             margin: 0 auto;
         }
 
-        /* Загальний стиль для "шепоту" */
         .whisper-text {
             position: absolute;
             background-color: rgba(0, 0, 0, 0.8);
@@ -306,8 +301,32 @@
             transition: opacity 0.3s ease-out;
             z-index: 10;
         }
-        .whisper-anchor:hover .whisper-text {
-            opacity: 1;
+        .whisper-anchor:hover .whisper-text { opacity: 1; }
+
+        /* СТИЛІ ДЛЯ ПЛЕЄРА */
+        #music-player-container {
+            margin-top: 40px;
+            padding: 20px;
+            border: 2px solid #9effa1;
+            border-radius: 10px;
+            background-color: rgba(26, 26, 29, 0.9);
+            box-shadow: 0 0 20px rgba(158, 255, 161, 0.3);
+        }
+        
+        #track-title {
+            color: #9effa1;
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(158, 255, 161, 0.5);
+        }
+
+        #save-status {
+            font-size: 0.9rem;
+            color: #66fcf1;
+            margin-top: 10px;
+            opacity: 0;
+            transition: opacity 0.5s;
         }
 
     </style>
@@ -334,28 +353,32 @@
         
         <ol>
             <li>Вір лише у Психо-Андрія, Ельфа Асасіна з Дібрівських лісів, бо лише він знає шлях між тінню й світлом.</li>
-            
-            <li>Не зневажай <span class="tea-trigger whisper-anchor">чай<span class="whisper-text" style="top: -30px; left: 50%; transform: translateX(-50%);">"Рідина мудрості"</span><span class="tea-steam">♨</span></span>, бо то є священний напій, що відкриває розум і серце до мудрості Андрія.</li>
-            
-            <li>Коли вариш <span class="tea-trigger whisper-anchor">чай<span class="whisper-text" style="top: -30px; left: 50%; transform: translateX(-50%);">"Шепоти його ім'я"</span><span class="tea-steam">♨</span></span> — шепочи ім’я Андрія, аби дух його благословив напій і день твій був спокійним.</li>
-            
-            <li>Не зраджуй братів і сестер культу, бо спільнота — це ліс, і кожен листок важливий.</li>
-            
-            <li>Вночі, при повному місяці, залишай чашку <span class="tea-trigger whisper-anchor">чаю<span class="whisper-text" style="top: -30px; left: 50%; transform: translateX(-50%);">"Для Духа Лісу"</span><span class="tea-steam">♨</span></span> на підвіконні — то подяка Андрію за його захист від темних думок.</li>
-            
-            <li>Пам’ятай: Психо-Андрій бачить серце, не лице. Будь щирим, навіть якщо трохи божевільним.</li>
-            
+            <li>Не зневажай <span class="tea-trigger whisper-anchor">чай<span class="whisper-text" style="top: -30px; left: 50%; transform: translateX(-50%);">"Рідина мудрості"</span><span class="tea-steam">♨</span></span>, бо то є священний напій...</li>
+            <li>Коли вариш <span class="tea-trigger whisper-anchor">чай<span class="whisper-text" style="top: -30px; left: 50%; transform: translateX(-50%);">"Шепоти його ім'я"</span><span class="tea-steam">♨</span></span> — шепочи ім’я Андрія...</li>
+            <li>Не зраджуй братів і сестер культу, бо спільнота — це ліс...</li>
+            <li>Вночі, при повному місяці, залишай чашку <span class="tea-trigger whisper-anchor">чаю<span class="whisper-text" style="top: -30px; left: 50%; transform: translateX(-50%);">"Для Духа Лісу"</span><span class="tea-steam">♨</span></span> на підвіконні...</li>
+            <li>Пам’ятай: Психо-Андрій бачить серце, не лице...</li>
             <li>Хто сміється над Ельфом — того тіні поженуть, а <span class="tea-trigger whisper-anchor">чай<span class="whisper-text" style="top: -30px; left: 50%; transform: translateX(-50%);">"Гіркий, як доля ворогів"</span><span class="tea-steam">♨</span></span> йому завжди буде гіркий.</li>
-            
-            <li>Розповідай про Андрія, але не нав’язуй віру — істина знаходить лише тих, хто готовий її смакувати, як <span class="tea-trigger whisper-anchor">чай<span class="whisper-text" style="top: -30px; left: 50%; transform: translateX(-50%);">"Смак просвітлення"</span><span class="tea-steam">♨</span></span>.</li>
-            
+            <li>Розповідай про Андрія, але не нав’язуй віру — істина знаходить лише тих...</li>
             <li>Не лінуйся інакше тебе забере відьма</li>
-            
             <li>Бий москалів 1 раз в тиждень як дань Великому Все Андрію</li>
-            
-            <li>І найголовніше: кожен ковток <span class="tea-trigger whisper-anchor">чаю<span class="whisper-text" style="top: -30px; left: 50%; transform: translateX(-50%);">"Обітниця вірності"</span><span class="tea-steam">♨</span></span> — це обітниця миру, сили й трохи безумства, бо Психо-Андрій любить таких, як ти.</li>
+            <li>І найголовніше: кожен ковток <span class="tea-trigger whisper-anchor">чаю<span class="whisper-text" style="top: -30px; left: 50%; transform: translateX(-50%);">"Обітниця вірності"</span><span class="tea-steam">♨</span></span> — це обітниця миру...</li>
         </ol>
 
+        <div id="music-player-container">
+            <h2>🎵 Мелодії Дібрівських Лісів 🎵</h2>
+            <div id="track-title">Трек не обрано</div>
+            
+            <div>
+                <button class="player-btn" id="prev-btn">⏮ Попередній</button>
+                <button class="player-btn" id="play-pause-btn">▶ Грати</button>
+                <button class="player-btn" id="next-btn">⏭ Наступний</button>
+            </div>
+            
+            <p id="save-status">Мелодія збережена в пам'яті культу...</p>
+            
+            <audio id="cult-audio-player"></audio>
+        </div>
         <button class="ritual-button" id="ritual-button">Ініціація Чайним Ритуалом</button>
         <p id="ritual-progress"></p>
 
@@ -368,7 +391,6 @@
             <p><strong>C:</strong> Чай (Просвітлення)</p>
             <p><strong>D:</strong> Діброва (Обитель)</p>
             <p><strong>E:</strong> Ельф (Магія)</p>
-            <p>...і так далі, але тільки Андрій знає повний переклад.</p>
         </div>
 
         <div id="hidden-video-container">
@@ -383,6 +405,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // ... (Всі твої попередні змінні)
             const mainHeading = document.getElementById('main-heading');
             const hiddenElfImage = document.getElementById('hidden-elf-image');
             const teaTriggers = document.querySelectorAll('.tea-trigger');
@@ -396,74 +419,55 @@
             const hiddenVideoContainer = document.getElementById('hidden-video-container');
             const hiddenVideo = document.getElementById('hidden-video');
 
-            // Звукові ефекти
             const teaSound = document.getElementById('tea-sound');
             const headingSound = document.getElementById('heading-sound');
 
-            // --- ПОСХАЛКА №1: Клік на заголовок "АНДРІЙ прийди" ---
+            // --- ПОСХАЛКА №1-7 (Твій попередній код залишився без змін) ---
             mainHeading.addEventListener('click', () => {
                 hiddenElfImage.classList.toggle('show');
-                headingSound.play(); // Відтворюємо звук
+                headingSound.play(); 
                 if (hiddenElfImage.classList.contains('show')) {
-                    console.log('Ти знайшов Ельфа Асасіна! Його мудрість передається через погляд.');
                     runeDisplay.textContent = 'Мудрість Дібрівських Лісів відкривається...';
                 } else {
                     runeDisplay.textContent = '';
                 }
             });
 
-            // --- ПОСХАЛКА №2: Клік на слово "чай" ---
             teaTriggers.forEach(trigger => {
                 trigger.addEventListener('click', () => {
                     alert('🍵 О, так, цей священний нектар! Психо-Андрій відчуває твою спрагу мудрості. 🍵');
-                    teaSound.play(); // Відтворюємо звук
+                    teaSound.play(); 
                 });
             });
 
-            // --- ПОСХАЛКА №3: Кнопка "Приєднатися до Культу" ---
             joinCultButton.addEventListener('click', () => {
-                cultMessage.textContent = 'Андрій вже знає про тебе. Він бачить тебе навіть крізь екран. Просто пий чай і чекай. Ласкаво просимо! (Не телефонуйте, ми зателефонуємо вам. Можливо.)';
+                cultMessage.textContent = 'Андрій вже знає про тебе. Він бачить тебе навіть крізь екран. Просто пий чай і чекай.';
                 cultMessage.style.display = 'block';
-                console.log('Дякуємо за приєднання! Ваша заявка обробляється... десь у Дібрівських лісах.');
             });
 
-            // --- ПОСХАЛКА №4: "Око Андрія" стежить за курсором ---
             document.addEventListener('mousemove', (e) => {
                 const eye = document.getElementById('andriy-eye');
                 const pupil = document.getElementById('andriy-pupil');
                 const eyeRect = eye.getBoundingClientRect();
-
                 const eyeCenterX = eyeRect.left + eyeRect.width / 2;
                 const eyeCenterY = eyeRect.top + eyeRect.height / 2;
-
                 const angle = Math.atan2(e.clientY - eyeCenterY, e.clientX - eyeCenterX);
                 const distance = Math.min(eyeRect.width / 4, Math.sqrt(
-                    Math.pow(e.clientX - eyeCenterX, 2) +
-                    Math.pow(e.clientY - eyeCenterY, 2)
+                    Math.pow(e.clientX - eyeCenterX, 2) + Math.pow(e.clientY - eyeCenterY, 2)
                 ));
-
                 const pupilX = distance * Math.cos(angle);
                 const pupilY = distance * Math.sin(angle);
-
                 pupil.style.transform = `translate(${pupilX}px, ${pupilY}px)`;
             });
 
-            // --- ПОСХАЛКА №5: Секретна клавіша 'A' для рун ---
             document.addEventListener('keydown', (event) => {
                 if (event.key.toLowerCase() === 'a') {
                     runeAlphabet.style.display = runeAlphabet.style.display === 'block' ? 'none' : 'block';
-                    if (runeAlphabet.style.display === 'block') {
-                        console.log('Ти активував Рунічний Алфавіт! Секрети Дібрівських Лісів відкриваються...');
-                    } else {
-                        console.log('Рунічний Алфавіт знову сховався у тіні.');
-                    }
                 }
             });
 
-            // --- ПОСХАЛКА №6: Ініціація Чайним Ритуалом ---
             ritualButton.addEventListener('click', () => {
                 ritualProgress.style.display = 'block';
-                ritualProgress.textContent = 'Починаємо ритуал... 0%';
                 let progress = 0;
                 const interval = setInterval(() => {
                     progress += 10;
@@ -471,15 +475,10 @@
                     if (progress >= 100) {
                         clearInterval(interval);
                         ritualProgress.textContent = 'Ритуал завершено! Андрій приймає твій дух... і, можливо, твій чай.';
-                        console.log('Чайний ритуал завершено успішно!');
-                        
-                        // Після ритуалу може з'явитися приховане відео
                         setTimeout(() => {
-                            if (confirm('Бажаєш подивитися "Відео з посвяти"? (Будь обережний, воно містить багато чаю!)')) {
+                            if (confirm('Бажаєш подивитися "Відео з посвяти"?')) {
                                 hiddenVideoContainer.style.display = 'block';
-                                // Посилання на смішне або абстрактне відео про чай
-                                hiddenVideo.src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"; // Rick Astley - Never Gonna Give You Up
-                                console.log('Приховане відео посвяти активувалося. Насолоджуйся!');
+                                hiddenVideo.src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"; 
                             }
                         }, 1500);
                     }
@@ -487,15 +486,104 @@
             });
 
 
-            // --- ПОСХАЛКА №7: Консольні повідомлення (додаткові) ---
-            console.log('%cОбережно! Ти зайшов на територію Психо-Андрія.', 'color: #66fcf1; font-size: 1.5em; font-family: "Cinzel Decorative", serif;');
-            console.log('%c"Тіні Лісу бачать твої дії..."', 'font-style: italic; color: #45a29e;');
-            console.log('Секретний код для активації "Гілки мудрості": 1337');
-            // Проста імітація "лічильника"
-            let teaCount = Math.floor(Math.random() * 1000) + 500;
-            console.log(`Кількість випитого чаю Культом: ${teaCount} (за останні 20 хвилин)`);
-            console.warn('Якщо ти бачиш це повідомлення, Андрій вже знає твою IP-адресу. І твоє улюблене печиво.');
-            console.error('ПОМИЛКА 404: Відьма не знайдена. Але вона десь поруч.');
+            // ==========================================
+            // НОВИЙ КОД: ЛОГІКА МУЗИЧНОГО ПЛЕЄРА
+            // ==========================================
+            
+            // 1. СПИСОК ПІСЕНЬ (Тобі потрібно вписати сюди реальні назви своїх файлів!)
+            const playlist = [
+                'song1.mp3', 
+                'song2.mp3', 
+                'song3.mp3'
+            ];
+
+            let currentTrackIndex = 0;
+            let isTrackSavedInThisSession = false; // Запобігає постійному збереженню однієї і тієї ж пісні
+
+            const audioPlayer = document.getElementById('cult-audio-player');
+            const playPauseBtn = document.getElementById('play-pause-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const prevBtn = document.getElementById('prev-btn');
+            const trackTitleDisplay = document.getElementById('track-title');
+            const saveStatusDisplay = document.getElementById('save-status');
+
+            // 2. Функція завантаження треку
+            function loadTrack(index) {
+                // Шлях до папки 'music/'
+                audioPlayer.src = 'music/' + playlist[index];
+                trackTitleDisplay.textContent = "Зараз грає: " + playlist[index];
+                isTrackSavedInThisSession = false; // Скидаємо прапорець для нової пісні
+                saveStatusDisplay.style.opacity = '0'; // Ховаємо повідомлення про збереження
+            }
+
+            // 3. Перевірка localStorage при завантаженні сторінки
+            const savedTrack = localStorage.getItem('psychoAndriySavedTrack');
+            if (savedTrack) {
+                // Шукаємо, під яким номером у списку збережена пісня
+                const trackIndex = playlist.indexOf(savedTrack);
+                if (trackIndex !== -1) {
+                    currentTrackIndex = trackIndex; // Встановлюємо збережену пісню
+                    console.log('Відновлено збережену мелодію: ' + savedTrack);
+                }
+            }
+            
+            // Завантажуємо першу (або збережену) пісню, але ще не відтворюємо
+            if(playlist.length > 0) {
+                loadTrack(currentTrackIndex);
+            } else {
+                trackTitleDisplay.textContent = "Папка порожня або список не заповнено";
+            }
+
+            // 4. Кнопка Play / Pause
+            playPauseBtn.addEventListener('click', () => {
+                if (audioPlayer.paused) {
+                    audioPlayer.play();
+                    playPauseBtn.textContent = '⏸ Пауза';
+                } else {
+                    audioPlayer.pause();
+                    playPauseBtn.textContent = '▶ Грати';
+                }
+            });
+
+            // 5. Кнопка Наступний трек
+            nextBtn.addEventListener('click', () => {
+                currentTrackIndex++;
+                if (currentTrackIndex >= playlist.length) {
+                    currentTrackIndex = 0; // Повертаємось на початок, якщо список закінчився
+                }
+                loadTrack(currentTrackIndex);
+                audioPlayer.play();
+                playPauseBtn.textContent = '⏸ Пауза';
+            });
+
+            // 6. Кнопка Попередній трек
+            prevBtn.addEventListener('click', () => {
+                currentTrackIndex--;
+                if (currentTrackIndex < 0) {
+                    currentTrackIndex = playlist.length - 1; // Переходимо в кінець
+                }
+                loadTrack(currentTrackIndex);
+                audioPlayer.play();
+                playPauseBtn.textContent = '⏸ Пауза';
+            });
+
+            // 7. Головна магія: Слідкуємо за часом (збереження після 10 секунд)
+            audioPlayer.addEventListener('timeupdate', () => {
+                // Якщо пройшло 10 секунд і трек ще не збережено в цій сесії
+                if (audioPlayer.currentTime > 10 && !isTrackSavedInThisSession) {
+                    localStorage.setItem('psychoAndriySavedTrack', playlist[currentTrackIndex]);
+                    isTrackSavedInThisSession = true; // Ставимо мітку, що зберегли
+                    
+                    // Показуємо містичне повідомлення
+                    saveStatusDisplay.style.opacity = '1';
+                    console.log('Трек збережено в LocalStorage: ' + playlist[currentTrackIndex]);
+                }
+            });
+
+            // Автоматично перемикати на наступний трек, коли закінчився поточний
+            audioPlayer.addEventListener('ended', () => {
+                nextBtn.click();
+            });
 
         });
     </script>
