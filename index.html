@@ -7,16 +7,10 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍵</text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Spectral:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* [БАЗОВІ АНІМАЦІЇ ТА СТИЛІ] */
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 15px #66fcf1; }
-            50% { transform: scale(1.01); box-shadow: 0 0 30px #45a29e; }
-            100% { transform: scale(1); box-shadow: 0 0 15px #66fcf1; }
-        }
-        @keyframes teaSteam {
-            0% { transform: translateY(0) scale(0.5); opacity: 0.5; }
-            100% { transform: translateY(-50px) scale(1.2); opacity: 0; }
-        }
+        @keyframes pulse { 0% { transform: scale(1); box-shadow: 0 0 15px #66fcf1; } 50% { transform: scale(1.01); box-shadow: 0 0 30px #45a29e; } 100% { transform: scale(1); box-shadow: 0 0 15px #66fcf1; } }
+        @keyframes teaSteam { 0% { transform: translateY(0) scale(0.5); opacity: 0.5; } 100% { transform: translateY(-50px) scale(1.2); opacity: 0; } }
 
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: rgba(26, 26, 29, 0.8); border-radius: 4px; }
@@ -25,67 +19,22 @@
 
         body {
             background: linear-gradient(rgba(15, 15, 18, 0.85), rgba(15, 15, 18, 0.9)), url('https://i.pinimg.com/originals/8d/f3/0d/8df30db43d2c7f4a56c7028d7b326046.gif') no-repeat center center fixed;
-            background-size: cover;
-            color: #c5c6c7;
-            font-family: 'Spectral', serif;
-            margin: 0;
-            padding: 20px;
-            text-align: center;
-            line-height: 1.8;
+            background-size: cover; color: #c5c6c7; font-family: 'Spectral', serif; margin: 0; padding: 20px; text-align: center; line-height: 1.8;
             animation: fadeIn 2s ease-in-out;
             cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewport="0 0 100 100" style="fill:black;font-size:12px;"><text y="50%">🍵</text></svg>') 8 8, auto;
         }
 
-        .container {
-            max-width: 900px;
-            margin: 30px auto;
-            padding: 40px;
-            background-color: rgba(31, 33, 36, 0.95);
-            border: 2px solid #66fcf1;
-            border-radius: 20px;
-            box-shadow: 0 0 30px rgba(102, 252, 241, 0.3);
-            animation: pulse 5s infinite ease-in-out;
-            position: relative;
-            z-index: 1;
-        }
+        .container { max-width: 900px; margin: 30px auto; padding: 40px; background-color: rgba(31, 33, 36, 0.95); border: 2px solid #66fcf1; border-radius: 20px; box-shadow: 0 0 30px rgba(102, 252, 241, 0.3); animation: pulse 5s infinite ease-in-out; position: relative; z-index: 1; }
 
         h1 { font-family: 'Cinzel Decorative', serif; font-size: 4.5rem; color: #66fcf1; cursor: pointer; user-select: none; text-shadow: 0 0 20px #66fcf1, 0 0 30px #45a29e; transition: all 0.4s ease; margin-bottom: 20px; letter-spacing: 2px; }
         h1:hover { color: #9effa1; text-shadow: 0 0 25px #9effa1, 0 0 40px #66fcf1; transform: scale(1.02); }
         h2 { font-family: 'Cinzel Decorative', serif; color: #66fcf1; border-bottom: 2px solid #45a29e; padding-bottom: 15px; margin-top: 40px; font-size: 2.2rem; text-shadow: 0 0 10px rgba(102, 252, 241, 0.4); letter-spacing: 1px; }
 
-        /* === ВИПРАВЛЕНА НУМЕРАЦІЯ (ТІЛЬКИ ДЛЯ ПРАВИЛ) === */
-        #rules-list {
-            list-style: none;
-            padding: 0;
-            margin-top: 30px;
-            counter-reset: rule-counter;
-            text-align: left;
-        }
-
-        #rules-list li {
-            position: relative;
-            padding-left: 60px; /* Збільшений відступ для цифр */
-            margin-bottom: 25px;
-            font-size: 1.25rem;
-            line-height: 1.7;
-            transition: transform 0.2s ease-out, color 0.3s;
-        }
-
+        #rules-list { list-style: none; padding: 0; margin-top: 30px; counter-reset: rule-counter; text-align: left; }
+        #rules-list li { position: relative; padding-left: 60px; margin-bottom: 25px; font-size: 1.25rem; line-height: 1.7; transition: transform 0.2s ease-out, color 0.3s; }
         #rules-list li:hover { transform: translateX(8px); color: #e0f2f1; }
+        #rules-list li::before { counter-increment: rule-counter; content: "◆ " counter(rule-counter) "."; color: #66fcf1; font-weight: bold; position: absolute; left: 0; top: 0; width: 45px; text-align: right; }
 
-        #rules-list li::before {
-            counter-increment: rule-counter;
-            content: "◆ " counter(rule-counter) ".";
-            color: #66fcf1;
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 45px;
-            text-align: right;
-        }
-
-        /* === ІНШІ СТИЛІ === */
         .tea-trigger { color: #9effa1; font-weight: bold; cursor: pointer; text-decoration: underline dotted #45a29e; transition: all 0.3s ease; position: relative; display: inline-block; padding: 2px 5px; border-radius: 4px; user-select: none; }
         .tea-trigger:hover { color: #1f2124; background-color: #9effa1; text-decoration: none; }
         .tea-steam { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); font-size: 2em; opacity: 0; animation: teaSteam 3s infinite ease-out; color: #e0f2f1; pointer-events: none; text-shadow: 0 0 5px #e0f2f1; }
@@ -99,29 +48,37 @@
         .cult-button:hover, .player-btn:hover { background-color: #66fcf1; color: #1f2124; transform: translateY(-3px); box-shadow: 0 0 20px rgba(102, 252, 241, 0.8); }
 
         #cult-message { margin-top: 20px; font-size: 1.2rem; color: #9effa1; font-style: italic; display: none; animation: fadeIn 1s ease-out; }
-
         #andriy-eye { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: 70px; height: 70px; background-color: #1a1a1d; border-radius: 50%; border: 3px solid #66fcf1; display: flex; justify-content: center; align-items: center; overflow: hidden; box-shadow: 0 0 20px rgba(102, 252, 241, 0.6); z-index: 1000; }
         #andriy-pupil { width: 30px; height: 30px; background-color: #9effa1; border-radius: 50%; position: absolute; transition: all 0.1s linear; }
-
         .whisper-text { position: absolute; background-color: rgba(0, 0, 0, 0.9); color: #ffcc00; padding: 5px 12px; border-radius: 5px; white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity 0.3s ease; z-index: 10; border: 1px solid #ffcc00; font-size: 0.9rem;}
         .whisper-anchor:hover .whisper-text { opacity: 1; }
 
-        /* === ПЛЕЄР === */
-        #music-player-container { margin-top: 50px; padding: 30px; border: 1px solid #45a29e; border-radius: 15px; background: linear-gradient(145deg, rgba(26, 26, 29, 0.9), rgba(15, 15, 18, 0.95)); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(69, 162, 158, 0.3); display: flex; flex-direction: column; gap: 20px; }
-        .player-controls { display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 5px; }
+        /* === ПЛЕЄР ТА НОВІ КНОПКИ === */
+        #music-player-container { margin-top: 50px; padding: 30px; border: 1px solid #45a29e; border-radius: 15px; background: linear-gradient(145deg, rgba(26, 26, 29, 0.9), rgba(15, 15, 18, 0.95)); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(69, 162, 158, 0.3); display: flex; flex-direction: column; gap: 15px; }
+        
+        .player-controls { display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; }
+        
+        .control-icon { background: none; border: 1px solid transparent; color: #45a29e; font-size: 1.5rem; cursor: pointer; transition: all 0.3s; padding: 5px 10px; border-radius: 5px; }
+        .control-icon:hover { color: #66fcf1; transform: scale(1.1); }
+        .control-icon.active { color: #9effa1; border: 1px solid #9effa1; background: rgba(158, 255, 161, 0.1); box-shadow: 0 0 10px rgba(158, 255, 161, 0.3); }
+        .control-icon.dislike-active { color: #ff4c4c; border: 1px solid #ff4c4c; background: rgba(255, 76, 76, 0.1); }
 
+        .extra-controls { display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.3); padding: 10px 15px; border-radius: 8px; border: 1px dashed #45a29e; flex-wrap: wrap; gap: 10px; }
+        .volume-control { display: flex; align-items: center; gap: 10px; font-size: 1rem; color: #66fcf1; }
+        
         .progress-container { display: flex; align-items: center; gap: 15px; margin: 10px 0; padding: 0 10px; }
         #current-time, #total-time { font-family: 'Courier New', Courier, monospace; font-size: 1rem; color: #9effa1; min-width: 50px; }
+        
         input[type=range] { flex-grow: 1; -webkit-appearance: none; background: rgba(0, 0, 0, 0.5); height: 6px; border-radius: 5px; outline: none; cursor: pointer; border: 1px solid #45a29e; }
         input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%; background: #66fcf1; box-shadow: 0 0 10px #66fcf1; transition: transform 0.1s; }
         input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.3); }
 
-        /* Видалено будь-які конфлікти ::before для плейлиста */
         #playlist-ui { list-style: none; padding: 5px; margin: 0; border-top: 1px solid rgba(69, 162, 158, 0.5); border-bottom: 1px solid rgba(69, 162, 158, 0.5); max-height: 160px; overflow-y: auto; background-color: rgba(0, 0, 0, 0.2); border-radius: 8px; }
-        .playlist-item { padding: 12px 15px; cursor: pointer; border-bottom: 1px solid rgba(69, 162, 158, 0.2); transition: all 0.2s; text-align: left; font-size: 1.1rem; border-radius: 4px; }
+        .playlist-item { padding: 12px 15px; cursor: pointer; border-bottom: 1px solid rgba(69, 162, 158, 0.2); transition: all 0.2s; text-align: left; font-size: 1.1rem; border-radius: 4px; display: flex; justify-content: space-between; align-items: center;}
         .playlist-item:last-child { border-bottom: none; }
         .playlist-item:hover { background-color: rgba(102, 252, 241, 0.15); color: #ffffff; padding-left: 25px; }
         .playlist-item.active { background-color: rgba(69, 162, 158, 0.3); color: #9effa1; font-weight: bold; border-left: 5px solid #9effa1; padding-left: 20px;}
+        .status-icon { font-size: 1rem; opacity: 0.7; }
 
         #track-info-panel { text-align: left; background-color: rgba(0, 0, 0, 0.6); padding: 20px; border-radius: 10px; border: 1px solid rgba(102, 252, 241, 0.3); }
         .info-label { color: #45a29e; font-weight: bold; font-family: 'Cinzel Decorative', serif; }
@@ -139,9 +96,7 @@
 </head>
 <body>
 
-    <div id="andriy-eye">
-        <div id="andriy-pupil"></div>
-    </div>
+    <div id="andriy-eye"><div id="andriy-pupil"></div></div>
 
     <div class="container">
         <h1 id="main-heading" class="whisper-anchor">АНДРІЙ прийди!
@@ -149,21 +104,32 @@
         </h1>
         
         <img src="https://i.pinimg.com/564x/07/34/7d/07347d3f1a04f210a501a35fb31f13b6.jpg" alt="Ельф Асасін" id="hidden-elf-image">
-
-        <button class="cult-button" id="join-cult-button">Приєднатися до Культу Психо-Андрія</button>
+        <button class="cult-button" id="join-cult-button">Приєднатися до Культу</button>
         <p id="cult-message"></p>
 
         <h2>📜 Святі правила культу Психо-Андрія</h2>
-        
         <ol id="rules-list"></ol>
 
         <div id="music-player-container">
             <h2>🎵 Сувої Дібрівських Мелодій 🎵</h2>
             
             <div class="player-controls">
+                <button class="control-icon" id="shuffle-btn" title="Перемішка">🔀</button>
+                <button class="control-icon" id="repeat-btn" title="Повтор пісні">🔁</button>
+                
                 <button class="player-btn" id="prev-btn">⏮</button>
                 <button class="player-btn" id="play-pause-btn" style="width: 120px;">▶ Грати</button>
                 <button class="player-btn" id="next-btn">⏭</button>
+
+                <button class="control-icon" id="like-btn" title="Вподобати">💚</button>
+                <button class="control-icon" id="dislike-btn" title="Не вподобати">💔</button>
+            </div>
+
+            <div class="extra-controls">
+                <div class="volume-control">
+                    🔊 <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="1" style="width: 100px;">
+                </div>
+                <button class="player-btn" id="liked-mode-btn" style="font-size: 0.9rem; margin: 0;">💚 Режим вподобань: ВИМК</button>
             </div>
 
             <div class="progress-container">
@@ -177,9 +143,8 @@
             <div id="track-info-panel">
                 <div style="font-size: 1.4rem; margin-bottom: 12px; color: #66fcf1; text-align: center; font-family: 'Cinzel Decorative', serif;" id="track-title-display">Назва пісні</div>
                 <div><span class="info-label">Автор:</span> <span id="track-author-display" style="color:#fff;">-</span></div>
-                <div><span class="info-label">Помічник (Співавтор):</span> <span id="track-coauthor-display" style="color:#fff;">-</span></div>
+                <div><span class="info-label">Помічник:</span> <span id="track-coauthor-display" style="color:#fff;">-</span></div>
                 <div><span class="info-label">Опис:</span> <span id="track-desc-display" style="color:#fff;">-</span></div>
-                
                 <div id="track-lyrics"></div>
             </div>
             
@@ -193,16 +158,11 @@
         <div id="rune-display"></div>
         <div id="rune-alphabet">
             <h3>Рунічний Алфавіт Дібрівських Лісів:</h3>
-            <p><strong>A:</strong> Андрій (Начало)</p>
-            <p><strong>B:</strong> Безумство (Шлях)</p>
-            <p><strong>C:</strong> Чай (Просвітлення)</p>
-            <p><strong>D:</strong> Діброва (Обитель)</p>
-            <p><strong>E:</strong> Ельф (Магія)</p>
+            <p><strong>A:</strong> Андрій (Начало)</p><p><strong>B:</strong> Безумство (Шлях)</p><p><strong>C:</strong> Чай (Просвітлення)</p>
         </div>
 
         <div id="hidden-video-container">
-            <h3>Приховане відео посвяти:</h3>
-            <iframe id="hidden-video" width="560" height="315" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe id="hidden-video" width="560" height="315" src="" frameborder="0" allow="autoplay" allowfullscreen></iframe>
         </div>
     </div>
 
@@ -214,108 +174,124 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             
-            // 1. ЗАВАНТАЖУЄМО ПРАВИЛА З PLAYLIST.JS
+            // Завантаження правил
             const rulesList = document.getElementById('rules-list');
             if (typeof rulesData !== 'undefined') {
-                rulesData.forEach(ruleHtml => {
-                    const li = document.createElement('li');
-                    li.innerHTML = ruleHtml;
-                    rulesList.appendChild(li);
-                });
-            } else {
-                rulesList.innerHTML = "<li>Сталася магічна помилка: правила не знайдено. Перевірте файл playlist.js</li>";
+                rulesData.forEach(ruleHtml => { const li = document.createElement('li'); li.innerHTML = ruleHtml; rulesList.appendChild(li); });
             }
 
-            // ==========================================
-            // ПАСХАЛКИ ТА ОКО
-            // ==========================================
+            // Пасхалки
             const mainHeading = document.getElementById('main-heading');
             const hiddenElfImage = document.getElementById('hidden-elf-image');
-            const joinCultButton = document.getElementById('join-cult-button');
-            const cultMessage = document.getElementById('cult-message');
-            const runeDisplay = document.getElementById('rune-display');
-            const runeAlphabet = document.getElementById('rune-alphabet');
-            const ritualButton = document.getElementById('ritual-button');
-            const ritualProgress = document.getElementById('ritual-progress');
-            const hiddenVideoContainer = document.getElementById('hidden-video-container');
-            const hiddenVideo = document.getElementById('hidden-video');
             const teaSound = document.getElementById('tea-sound');
             const headingSound = document.getElementById('heading-sound');
 
-            // Оскільки правила генеруються динамічно, шукаємо "чай" із затримкою
             setTimeout(() => {
-                const teaTriggers = document.querySelectorAll('.tea-trigger');
-                teaTriggers.forEach(trigger => {
+                document.querySelectorAll('.tea-trigger').forEach(trigger => {
                     trigger.addEventListener('click', () => { alert('🍵 О, так, цей священний нектар!'); teaSound.play(); });
                 });
             }, 100);
 
-            mainHeading.addEventListener('click', () => {
-                hiddenElfImage.classList.toggle('show'); headingSound.play(); 
-                runeDisplay.textContent = hiddenElfImage.classList.contains('show') ? 'Мудрість Дібрівських Лісів відкривається...' : '';
-            });
-
-            joinCultButton.addEventListener('click', () => {
-                cultMessage.textContent = 'Андрій вже знає про тебе. Просто пий чай і чекай.'; cultMessage.style.display = 'block';
-            });
-
+            mainHeading.addEventListener('click', () => { hiddenElfImage.classList.toggle('show'); headingSound.play(); });
+            document.getElementById('join-cult-button').addEventListener('click', () => { document.getElementById('cult-message').style.display = 'block'; });
+            
             document.addEventListener('mousemove', (e) => {
                 const eye = document.getElementById('andriy-eye'); const pupil = document.getElementById('andriy-pupil');
-                const eyeRect = eye.getBoundingClientRect();
-                const eyeCenterX = eyeRect.left + eyeRect.width / 2; const eyeCenterY = eyeRect.top + eyeRect.height / 2;
-                const angle = Math.atan2(e.clientY - eyeCenterY, e.clientX - eyeCenterX);
-                const distance = Math.min(eyeRect.width / 4, Math.sqrt(Math.pow(e.clientX - eyeCenterX, 2) + Math.pow(e.clientY - eyeCenterY, 2)));
-                pupil.style.transform = `translate(${distance * Math.cos(angle)}px, ${distance * Math.sin(angle)}px)`;
+                const rect = eye.getBoundingClientRect(); const cx = rect.left + rect.width / 2; const cy = rect.top + rect.height / 2;
+                const angle = Math.atan2(e.clientY - cy, e.clientX - cx);
+                const dist = Math.min(rect.width / 4, Math.sqrt(Math.pow(e.clientX - cx, 2) + Math.pow(e.clientY - cy, 2)));
+                pupil.style.transform = `translate(${dist * Math.cos(angle)}px, ${dist * Math.sin(angle)}px)`;
             });
 
-            document.addEventListener('keydown', (event) => {
-                if (event.key.toLowerCase() === 'a') runeAlphabet.style.display = runeAlphabet.style.display === 'block' ? 'none' : 'block';
-            });
-
-            ritualButton.addEventListener('click', () => {
-                ritualProgress.style.display = 'block'; ritualProgress.textContent = 'Починаємо ритуал... 0%';
-                let progress = 0;
-                const interval = setInterval(() => {
-                    progress += 10; ritualProgress.textContent = `Починаємо ритуал... ${progress}%`;
-                    if (progress >= 100) {
-                        clearInterval(interval); ritualProgress.textContent = 'Ритуал завершено! Андрій приймає твій дух.';
-                        setTimeout(() => {
-                            if (confirm('Бажаєш подивитися "Відео з посвяти"?')) {
-                                hiddenVideoContainer.style.display = 'block'; hiddenVideo.src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"; 
-                            }
-                        }, 1500);
-                    }
-                }, 300);
-            });
+            document.addEventListener('keydown', (e) => { if (e.key.toLowerCase() === 'a') document.getElementById('rune-alphabet').style.display = 'block'; });
 
             // ==========================================
-            // ЛОГІКА ПЛЕЄРА
+            // ЛОГІКА ПЛЕЄРА: НОВІ ФУНКЦІЇ
             // ==========================================
             let currentTrackIndex = 0;
             let isTrackSavedInThisSession = false;
+
+            // Змінні станів
+            let isShuffle = false;
+            let isRepeat = false;
+            let isLikedMode = false;
+
+            // Зчитуємо масиви вподобань з LocalStorage
+            let likedTracks = JSON.parse(localStorage.getItem('psychoAndriyLiked') || '[]');
+            let dislikedTracks = JSON.parse(localStorage.getItem('psychoAndriyDisliked') || '[]');
 
             const audioPlayer = document.getElementById('cult-audio-player');
             const playPauseBtn = document.getElementById('play-pause-btn');
             const nextBtn = document.getElementById('next-btn');
             const prevBtn = document.getElementById('prev-btn');
-            const saveStatusDisplay = document.getElementById('save-status');
-            
             const playlistUI = document.getElementById('playlist-ui');
-            const titleDisplay = document.getElementById('track-title-display');
-            const authorDisplay = document.getElementById('track-author-display');
-            const coauthorDisplay = document.getElementById('track-coauthor-display');
-            const descDisplay = document.getElementById('track-desc-display');
-            const lyricsDisplay = document.getElementById('track-lyrics');
-
             const progressBar = document.getElementById('progress-bar');
-            const currentTimeDisplay = document.getElementById('current-time');
-            const totalTimeDisplay = document.getElementById('total-time');
+            
+            // Нові кнопки
+            const shuffleBtn = document.getElementById('shuffle-btn');
+            const repeatBtn = document.getElementById('repeat-btn');
+            const likeBtn = document.getElementById('like-btn');
+            const dislikeBtn = document.getElementById('dislike-btn');
+            const likedModeBtn = document.getElementById('liked-mode-btn');
+            const volumeSlider = document.getElementById('volume-slider');
 
             function formatTime(seconds) {
                 if (isNaN(seconds)) return "0:00";
-                const min = Math.floor(seconds / 60);
-                const sec = Math.floor(seconds % 60);
+                const min = Math.floor(seconds / 60); const sec = Math.floor(seconds % 60);
                 return `${min}:${sec < 10 ? '0' : ''}${sec}`;
+            }
+
+            // Функція для візуального оновлення кнопок та списку
+            function updateUI() {
+                if (typeof tracksData === 'undefined' || tracksData.length === 0) return;
+                const track = tracksData[currentTrackIndex];
+
+                // Кнопки лайк/дизлайк
+                if (likedTracks.includes(track.filename)) {
+                    likeBtn.classList.add('active');
+                } else {
+                    likeBtn.classList.remove('active');
+                }
+
+                if (dislikedTracks.includes(track.filename)) {
+                    dislikeBtn.classList.add('dislike-active');
+                } else {
+                    dislikeBtn.classList.remove('dislike-active');
+                }
+
+                // Кнопки режимів
+                shuffleBtn.classList.toggle('active', isShuffle);
+                repeatBtn.classList.toggle('active', isRepeat);
+                
+                if (isLikedMode) {
+                    likedModeBtn.textContent = '💚 Режим вподобань: УВІМК';
+                    likedModeBtn.classList.add('active');
+                    likedModeBtn.style.color = '#1f2124';
+                    likedModeBtn.style.backgroundColor = '#9effa1';
+                } else {
+                    likedModeBtn.textContent = '💚 Режим вподобань: ВИМК';
+                    likedModeBtn.classList.remove('active');
+                    likedModeBtn.style.color = '#66fcf1';
+                    likedModeBtn.style.backgroundColor = 'transparent';
+                }
+
+                // Оновлення іконок у списку
+                const allItems = playlistUI.querySelectorAll('.playlist-item');
+                allItems.forEach((item, index) => {
+                    item.classList.remove('active');
+                    let iconSpan = item.querySelector('.status-icon');
+                    if (!iconSpan) {
+                        iconSpan = document.createElement('span');
+                        iconSpan.className = 'status-icon';
+                        item.appendChild(iconSpan);
+                    }
+                    const t = tracksData[index];
+                    if (likedTracks.includes(t.filename)) iconSpan.textContent = ' 💚';
+                    else if (dislikedTracks.includes(t.filename)) iconSpan.textContent = ' 💔';
+                    else iconSpan.textContent = '';
+                });
+
+                if (allItems[currentTrackIndex]) allItems[currentTrackIndex].classList.add('active');
             }
 
             function buildPlaylistUI() {
@@ -325,7 +301,10 @@
                 tracksData.forEach((track, index) => {
                     const li = document.createElement('li');
                     li.className = 'playlist-item';
-                    li.textContent = track.title; 
+                    
+                    const titleSpan = document.createElement('span');
+                    titleSpan.textContent = track.title;
+                    li.appendChild(titleSpan);
                     
                     li.addEventListener('click', () => {
                         currentTrackIndex = index;
@@ -336,6 +315,7 @@
                     
                     playlistUI.appendChild(li);
                 });
+                updateUI();
             }
 
             function loadTrack(index) {
@@ -344,86 +324,178 @@
                 
                 audioPlayer.src = 'music/' + track.filename;
                 
-                titleDisplay.textContent = track.title;
-                authorDisplay.textContent = track.author;
-                coauthorDisplay.textContent = track.coAuthor;
-                descDisplay.textContent = track.description;
-                lyricsDisplay.textContent = track.lyrics;
-
-                const allItems = playlistUI.querySelectorAll('.playlist-item');
-                allItems.forEach(item => item.classList.remove('active'));
-                if (allItems[index]) allItems[index].classList.add('active');
+                document.getElementById('track-title-display').textContent = track.title;
+                document.getElementById('track-author-display').textContent = track.author;
+                document.getElementById('track-coauthor-display').textContent = track.coAuthor;
+                document.getElementById('track-desc-display').textContent = track.description;
+                document.getElementById('track-lyrics').textContent = track.lyrics;
 
                 isTrackSavedInThisSession = false; 
-                saveStatusDisplay.style.opacity = '0'; 
+                document.getElementById('save-status').style.opacity = '0'; 
+                progressBar.value = 0; document.getElementById('current-time').textContent = "0:00";
                 
-                progressBar.value = 0;
-                currentTimeDisplay.textContent = "0:00";
+                updateUI();
             }
 
+            // ФІЛЬТРАЦІЯ ПІСЕНЬ (Які пісні можна грати автоматично?)
+            function getValidTracks() {
+                let valid = [];
+                for (let i = 0; i < tracksData.length; i++) {
+                    const fname = tracksData[i].filename;
+                    if (isLikedMode) {
+                        if (likedTracks.includes(fname)) valid.push(i);
+                    } else {
+                        // Якщо не режим вподобань, граємо все, крім дизлайкнутих
+                        if (!dislikedTracks.includes(fname)) valid.push(i);
+                    }
+                }
+                return valid;
+            }
+
+            function playNextLogic(direction = 1) {
+                if (isRepeat && direction === 1) {
+                    loadTrack(currentTrackIndex);
+                    audioPlayer.play();
+                    return;
+                }
+
+                const validTracks = getValidTracks();
+                
+                if (validTracks.length === 0) {
+                    alert('Немає пісень для відтворення в цьому режимі! (Можливо, ви все задизлайкали або не вподобали жодної)');
+                    audioPlayer.pause();
+                    playPauseBtn.textContent = '▶ Грати';
+                    return;
+                }
+
+                if (isShuffle) {
+                    const rand = Math.floor(Math.random() * validTracks.length);
+                    currentTrackIndex = validTracks[rand];
+                } else {
+                    // Шукаємо наступний/попередній валідний індекс
+                    let found = false;
+                    let step = direction;
+                    for (let i = 1; i <= tracksData.length; i++) {
+                        let testIndex = (currentTrackIndex + step + tracksData.length) % tracksData.length;
+                        if (validTracks.includes(testIndex)) {
+                            currentTrackIndex = testIndex;
+                            found = true;
+                            break;
+                        }
+                        step += direction;
+                    }
+                    if (!found) currentTrackIndex = validTracks[0]; // На випадок збою
+                }
+
+                loadTrack(currentTrackIndex);
+                audioPlayer.play();
+                playPauseBtn.textContent = '⏸ Пауза';
+            }
+
+
+            // ІНІЦІАЛІЗАЦІЯ
             buildPlaylistUI(); 
             if (typeof tracksData !== 'undefined' && tracksData.length > 0) {
+                // Намагаємось знайти збережену пісню
                 const savedTrackFilename = localStorage.getItem('psychoAndriySavedTrack');
                 if (savedTrackFilename) {
                     const trackIndex = tracksData.findIndex(t => t.filename === savedTrackFilename);
                     if (trackIndex !== -1) currentTrackIndex = trackIndex;
                 }
+                
+                // Якщо початкова пісня задизлайкана, перемикаємо на нормальну (якщо не режим вподобань)
+                if (dislikedTracks.includes(tracksData[currentTrackIndex].filename)) {
+                     const valid = getValidTracks();
+                     if(valid.length > 0) currentTrackIndex = valid[0];
+                }
+                
                 loadTrack(currentTrackIndex);
             }
 
+            // ОБРОБНИКИ КНОПОК
             playPauseBtn.addEventListener('click', () => {
-                if (audioPlayer.paused) {
-                    audioPlayer.play();
-                    playPauseBtn.textContent = '⏸ Пауза';
-                } else {
-                    audioPlayer.pause();
-                    playPauseBtn.textContent = '▶ Грати';
+                if (audioPlayer.paused) { audioPlayer.play(); playPauseBtn.textContent = '⏸ Пауза'; } 
+                else { audioPlayer.pause(); playPauseBtn.textContent = '▶ Грати'; }
+            });
+
+            nextBtn.addEventListener('click', () => playNextLogic(1));
+            prevBtn.addEventListener('click', () => playNextLogic(-1));
+
+            // Гучність
+            volumeSlider.addEventListener('input', () => { audioPlayer.volume = volumeSlider.value; });
+
+            // Перемикачі
+            shuffleBtn.addEventListener('click', () => { isShuffle = !isShuffle; updateUI(); });
+            repeatBtn.addEventListener('click', () => { isRepeat = !isRepeat; updateUI(); });
+            likedModeBtn.addEventListener('click', () => { 
+                isLikedMode = !isLikedMode; 
+                updateUI(); 
+                // Якщо увімкнули режим, а поточна пісня не лайкнута - перемикаємо
+                if (isLikedMode && !likedTracks.includes(tracksData[currentTrackIndex].filename)) {
+                    playNextLogic(1);
                 }
             });
 
-            nextBtn.addEventListener('click', () => {
-                currentTrackIndex++;
-                if (currentTrackIndex >= tracksData.length) currentTrackIndex = 0;
-                loadTrack(currentTrackIndex);
-                audioPlayer.play();
-                playPauseBtn.textContent = '⏸ Пауза';
+            // Лайк / Дизлайк
+            likeBtn.addEventListener('click', () => {
+                const fname = tracksData[currentTrackIndex].filename;
+                if (likedTracks.includes(fname)) {
+                    // Забираємо лайк
+                    likedTracks = likedTracks.filter(t => t !== fname);
+                } else {
+                    // Ставимо лайк, забираємо дизлайк
+                    likedTracks.push(fname);
+                    dislikedTracks = dislikedTracks.filter(t => t !== fname);
+                }
+                localStorage.setItem('psychoAndriyLiked', JSON.stringify(likedTracks));
+                localStorage.setItem('psychoAndriyDisliked', JSON.stringify(dislikedTracks));
+                updateUI();
             });
 
-            prevBtn.addEventListener('click', () => {
-                currentTrackIndex--;
-                if (currentTrackIndex < 0) currentTrackIndex = tracksData.length - 1;
-                loadTrack(currentTrackIndex);
-                audioPlayer.play();
-                playPauseBtn.textContent = '⏸ Пауза';
+            dislikeBtn.addEventListener('click', () => {
+                const fname = tracksData[currentTrackIndex].filename;
+                if (!dislikedTracks.includes(fname)) {
+                    // Ставимо дизлайк, забираємо лайк
+                    dislikedTracks.push(fname);
+                    likedTracks = likedTracks.filter(t => t !== fname);
+                    localStorage.setItem('psychoAndriyLiked', JSON.stringify(likedTracks));
+                    localStorage.setItem('psychoAndriyDisliked', JSON.stringify(dislikedTracks));
+                    updateUI();
+                    // Дизлайкнули - одразу перемикаємо
+                    playNextLogic(1); 
+                } else {
+                    // Забираємо дизлайк
+                    dislikedTracks = dislikedTracks.filter(t => t !== fname);
+                    localStorage.setItem('psychoAndriyDisliked', JSON.stringify(dislikedTracks));
+                    updateUI();
+                }
             });
 
+            // Повзунок та збереження історії
             audioPlayer.addEventListener('timeupdate', () => {
                 if (!isNaN(audioPlayer.duration)) {
                     progressBar.value = audioPlayer.currentTime;
                     progressBar.max = audioPlayer.duration;
-                    currentTimeDisplay.textContent = formatTime(audioPlayer.currentTime);
-                    totalTimeDisplay.textContent = formatTime(audioPlayer.duration);
+                    document.getElementById('current-time').textContent = formatTime(audioPlayer.currentTime);
+                    document.getElementById('total-time').textContent = formatTime(audioPlayer.duration);
                 }
 
+                // Зберігаємо пісню для наступного входу
                 if (audioPlayer.currentTime > 10 && !isTrackSavedInThisSession && typeof tracksData !== 'undefined') {
                     localStorage.setItem('psychoAndriySavedTrack', tracksData[currentTrackIndex].filename);
                     isTrackSavedInThisSession = true;
-                    saveStatusDisplay.style.opacity = '1';
                 }
             });
 
             audioPlayer.addEventListener('loadedmetadata', () => {
                 progressBar.max = audioPlayer.duration;
-                totalTimeDisplay.textContent = formatTime(audioPlayer.duration);
+                document.getElementById('total-time').textContent = formatTime(audioPlayer.duration);
             });
 
-            progressBar.addEventListener('input', () => {
-                audioPlayer.currentTime = progressBar.value;
-            });
+            progressBar.addEventListener('input', () => { audioPlayer.currentTime = progressBar.value; });
 
-            audioPlayer.addEventListener('ended', () => {
-                nextBtn.click();
-            });
+            // Коли пісня закінчилась
+            audioPlayer.addEventListener('ended', () => playNextLogic(1));
 
         });
     </script>
