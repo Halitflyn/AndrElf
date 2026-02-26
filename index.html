@@ -6,7 +6,6 @@
     <title>Святилище Психо-Андрія: Культ Дібрівських Лісів</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Spectral:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* === АНІМАЦІЇ === */
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes pulse {
             0% { transform: scale(1); box-shadow: 0 0 15px #66fcf1; }
@@ -18,13 +17,11 @@
             100% { transform: translateY(-50px) scale(1.2); opacity: 0; }
         }
 
-        /* === КРАСИВІ СКРОЛБАРИ === */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: rgba(26, 26, 29, 0.8); border-radius: 4px; }
         ::-webkit-scrollbar-thumb { background: #45a29e; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #66fcf1; }
 
-        /* === ЗАГАЛЬНИЙ ДИЗАЙН === */
         body {
             background: linear-gradient(rgba(15, 15, 18, 0.85), rgba(15, 15, 18, 0.9)), url('https://i.pinimg.com/originals/8d/f3/0d/8df30db43d2c7f4a56c7028d7b326046.gif') no-repeat center center fixed;
             background-size: cover;
@@ -51,46 +48,27 @@
             z-index: 1;
         }
 
-        h1 {
-            font-family: 'Cinzel Decorative', serif;
-            font-size: 4.5rem;
-            color: #66fcf1;
-            cursor: pointer;
-            user-select: none;
-            text-shadow: 0 0 20px #66fcf1, 0 0 30px #45a29e;
-            transition: all 0.4s ease;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-        }
-
+        h1 { font-family: 'Cinzel Decorative', serif; font-size: 4.5rem; color: #66fcf1; cursor: pointer; user-select: none; text-shadow: 0 0 20px #66fcf1, 0 0 30px #45a29e; transition: all 0.4s ease; margin-bottom: 20px; letter-spacing: 2px; }
         h1:hover { color: #9effa1; text-shadow: 0 0 25px #9effa1, 0 0 40px #66fcf1; transform: scale(1.02); }
+        h2 { font-family: 'Cinzel Decorative', serif; color: #66fcf1; border-bottom: 2px solid #45a29e; padding-bottom: 15px; margin-top: 40px; font-size: 2.2rem; text-shadow: 0 0 10px rgba(102, 252, 241, 0.4); letter-spacing: 1px; }
 
-        h2 {
-            font-family: 'Cinzel Decorative', serif;
-            color: #66fcf1;
-            border-bottom: 2px solid #45a29e;
-            padding-bottom: 15px;
-            margin-top: 40px;
-            font-size: 2.2rem;
-            text-shadow: 0 0 10px rgba(102, 252, 241, 0.4);
-            letter-spacing: 1px;
-        }
-
-        /* === ВИПРАВЛЕНА НУМЕРАЦІЯ СПИСКУ === */
+        /* === ВИПРАВЛЕНА НУМЕРАЦІЯ (FLEXBOX) === */
         ol {
-            text-align: left;
-            padding-left: 0; /* Забираємо стандартний відступ */
-            margin-top: 30px;
             list-style: none;
+            padding: 0;
+            margin-top: 30px;
             counter-reset: rule-counter;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            text-align: left;
         }
 
         li {
-            margin-bottom: 25px;
-            line-height: 1.8;
+            display: flex;
+            align-items: flex-start;
             font-size: 1.25rem;
-            position: relative;
-            padding-left: 55px; /* Збільшили місце, щоб влізли цифри 10, 11 */
+            line-height: 1.6;
             transition: transform 0.2s ease-out, color 0.3s;
         }
 
@@ -101,139 +79,54 @@
             content: "◆ " counter(rule-counter) ".";
             color: #66fcf1;
             font-weight: bold;
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 45px; /* Фіксована ширина для маркера */
-            text-align: right; /* Вирівнюємо цифри по правому краю, щоб було рівно */
+            min-width: 55px; /* Фіксована ширина під номер */
+            flex-shrink: 0; /* Цифри ніколи не будуть стискатися */
+            text-align: right; /* Рівняємо по правому краю */
+            margin-right: 15px; /* Відступ від тексту */
         }
 
-        .tea-trigger {
-            color: #9effa1;
-            font-weight: bold;
-            cursor: pointer;
-            text-decoration: underline dotted #45a29e;
-            transition: all 0.3s ease;
-            position: relative;
-            display: inline-block;
-            padding: 2px 5px;
-            border-radius: 4px;
-            user-select: none;
-        }
-
+        /* === ІНШІ СТИЛІ === */
+        .tea-trigger { color: #9effa1; font-weight: bold; cursor: pointer; text-decoration: underline dotted #45a29e; transition: all 0.3s ease; position: relative; display: inline-block; padding: 2px 5px; border-radius: 4px; user-select: none; }
         .tea-trigger:hover { color: #1f2124; background-color: #9effa1; text-decoration: none; }
-        .tea-steam {
-            position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); font-size: 2em; opacity: 0;
-            animation: teaSteam 3s infinite ease-out; color: #e0f2f1; pointer-events: none; text-shadow: 0 0 5px #e0f2f1;
-        }
+        .tea-steam { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); font-size: 2em; opacity: 0; animation: teaSteam 3s infinite ease-out; color: #e0f2f1; pointer-events: none; text-shadow: 0 0 5px #e0f2f1; }
         .tea-trigger:hover .tea-steam { animation-play-state: running; }
 
         #hidden-elf-image { display: none; width: 300px; height: auto; margin: 30px auto; border: 4px solid #66fcf1; border-radius: 15px; box-shadow: 0 0 35px rgba(102, 252, 241, 0.6); animation: fadeIn 1.5s ease-out; }
         #hidden-elf-image.show { display: block; transform: scale(1.05); }
 
-        /* === КНОПКИ === */
-        .cult-button, .player-btn {
-            background-color: transparent;
-            color: #66fcf1;
-            border: 2px solid #66fcf1;
-            padding: 10px 20px;
-            font-size: 1.1rem;
-            font-family: 'Cinzel Decorative', serif;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin: 5px;
-            box-shadow: 0 0 10px rgba(102, 252, 241, 0.2) inset;
-        }
-
+        .cult-button, .player-btn { background-color: transparent; color: #66fcf1; border: 2px solid #66fcf1; padding: 10px 20px; font-size: 1.1rem; font-family: 'Cinzel Decorative', serif; border-radius: 8px; cursor: pointer; transition: all 0.3s ease; margin: 5px; box-shadow: 0 0 10px rgba(102, 252, 241, 0.2) inset; }
         .cult-button { padding: 15px 35px; font-size: 1.4rem; margin-top: 30px; }
         .cult-button:hover, .player-btn:hover { background-color: #66fcf1; color: #1f2124; transform: translateY(-3px); box-shadow: 0 0 20px rgba(102, 252, 241, 0.8); }
 
         #cult-message { margin-top: 20px; font-size: 1.2rem; color: #9effa1; font-style: italic; display: none; animation: fadeIn 1s ease-out; }
 
-        /* === ОКО АНДРІЯ === */
         #andriy-eye { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: 70px; height: 70px; background-color: #1a1a1d; border-radius: 50%; border: 3px solid #66fcf1; display: flex; justify-content: center; align-items: center; overflow: hidden; box-shadow: 0 0 20px rgba(102, 252, 241, 0.6); z-index: 1000; }
         #andriy-pupil { width: 30px; height: 30px; background-color: #9effa1; border-radius: 50%; position: absolute; transition: all 0.1s linear; }
 
         .whisper-text { position: absolute; background-color: rgba(0, 0, 0, 0.9); color: #ffcc00; padding: 5px 12px; border-radius: 5px; white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity 0.3s ease; z-index: 10; border: 1px solid #ffcc00; font-size: 0.9rem;}
         .whisper-anchor:hover .whisper-text { opacity: 1; }
 
-        /* === ПОКРАЩЕНИЙ ПЛЕЄР === */
-        #music-player-container {
-            margin-top: 50px;
-            padding: 30px;
-            border: 1px solid #45a29e;
-            border-radius: 15px;
-            background: linear-gradient(145deg, rgba(26, 26, 29, 0.9), rgba(15, 15, 18, 0.95));
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(69, 162, 158, 0.3);
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
+        /* === ПЛЕЄР === */
+        #music-player-container { margin-top: 50px; padding: 30px; border: 1px solid #45a29e; border-radius: 15px; background: linear-gradient(145deg, rgba(26, 26, 29, 0.9), rgba(15, 15, 18, 0.95)); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(69, 162, 158, 0.3); display: flex; flex-direction: column; gap: 20px; }
         .player-controls { display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 5px; }
 
-        /* ПОВЗУНОК ЧАСУ (ПРОГРЕС-БАР) */
-        .progress-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin: 10px 0;
-            padding: 0 10px;
-        }
+        .progress-container { display: flex; align-items: center; gap: 15px; margin: 10px 0; padding: 0 10px; }
         #current-time, #total-time { font-family: 'Courier New', Courier, monospace; font-size: 1rem; color: #9effa1; min-width: 50px; }
-        
-        input[type=range] {
-            flex-grow: 1;
-            -webkit-appearance: none;
-            background: rgba(0, 0, 0, 0.5);
-            height: 6px;
-            border-radius: 5px;
-            outline: none;
-            cursor: pointer;
-            border: 1px solid #45a29e;
-        }
-        input[type=range]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: #66fcf1;
-            box-shadow: 0 0 10px #66fcf1;
-            transition: transform 0.1s;
-        }
+        input[type=range] { flex-grow: 1; -webkit-appearance: none; background: rgba(0, 0, 0, 0.5); height: 6px; border-radius: 5px; outline: none; cursor: pointer; border: 1px solid #45a29e; }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%; background: #66fcf1; box-shadow: 0 0 10px #66fcf1; transition: transform 0.1s; }
         input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.3); }
 
-        #playlist-ui {
-            list-style: none; padding: 5px; margin: 0;
-            border-top: 1px solid rgba(69, 162, 158, 0.5); border-bottom: 1px solid rgba(69, 162, 158, 0.5);
-            max-height: 160px; overflow-y: auto;
-            background-color: rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-        }
-        .playlist-item {
-            padding: 12px 15px; cursor: pointer; border-bottom: 1px solid rgba(69, 162, 158, 0.2);
-            transition: all 0.2s; text-align: left; font-size: 1.1rem; border-radius: 4px;
-        }
+        #playlist-ui { list-style: none; padding: 5px; margin: 0; border-top: 1px solid rgba(69, 162, 158, 0.5); border-bottom: 1px solid rgba(69, 162, 158, 0.5); max-height: 160px; overflow-y: auto; background-color: rgba(0, 0, 0, 0.2); border-radius: 8px; }
+        .playlist-item { padding: 12px 15px; cursor: pointer; border-bottom: 1px solid rgba(69, 162, 158, 0.2); transition: all 0.2s; text-align: left; font-size: 1.1rem; border-radius: 4px; }
         .playlist-item:last-child { border-bottom: none; }
         .playlist-item:hover { background-color: rgba(102, 252, 241, 0.15); color: #ffffff; padding-left: 25px; }
         .playlist-item.active { background-color: rgba(69, 162, 158, 0.3); color: #9effa1; font-weight: bold; border-left: 5px solid #9effa1; padding-left: 20px;}
 
-        #track-info-panel {
-            text-align: left; background-color: rgba(0, 0, 0, 0.6); padding: 20px;
-            border-radius: 10px; border: 1px solid rgba(102, 252, 241, 0.3);
-        }
+        #track-info-panel { text-align: left; background-color: rgba(0, 0, 0, 0.6); padding: 20px; border-radius: 10px; border: 1px solid rgba(102, 252, 241, 0.3); }
         .info-label { color: #45a29e; font-weight: bold; font-family: 'Cinzel Decorative', serif; }
-        
-        #track-lyrics {
-            margin-top: 15px; padding-top: 15px; border-top: 1px dashed rgba(69, 162, 158, 0.5);
-            font-style: italic; color: #d3d4d5; white-space: pre-wrap; 
-            max-height: 200px; overflow-y: auto; line-height: 1.6; padding-right: 10px;
-        }
-
+        #track-lyrics { margin-top: 15px; padding-top: 15px; border-top: 1px dashed rgba(69, 162, 158, 0.5); font-style: italic; color: #d3d4d5; white-space: pre-wrap; max-height: 200px; overflow-y: auto; line-height: 1.6; padding-right: 10px; }
         #save-status { font-size: 0.95rem; color: #ffcc00; margin-top: 5px; opacity: 0; transition: opacity 0.5s; text-shadow: 0 0 5px #ffcc00; }
 
-        /* Ритуал та руни (залишено без змін) */
         #rune-display { font-family: 'Cinzel Decorative', serif; font-size: 1.5rem; color: #ffcc00; margin-top: 20px; min-height: 40px; display: none; }
         #rune-alphabet { display: none; margin-top: 30px; padding: 20px; background-color: rgba(0, 0, 0, 0.8); border: 2px solid #ffcc00; border-radius: 8px; color: #ffcc00; text-align: left; }
         .ritual-button { background-color: transparent; color: #e65100; border: 2px solid #e65100; padding: 12px 25px; font-size: 1.2rem; font-family: 'Spectral', serif; border-radius: 8px; cursor: pointer; transition: all 0.3s ease; margin-top: 30px; }
@@ -261,19 +154,7 @@
 
         <h2>📜 Святі правила культу Психо-Андрія</h2>
         
-        <ol>
-            <li>Вір лише у Психо-Андрія, Ельфа Асасіна з Дібрівських лісів, бо лише він знає шлях між тінню й світлом.</li>
-            <li>Не зневажай <span class="tea-trigger whisper-anchor">чай<span class="whisper-text" style="top: -30px; left: 50%; transform: translateX(-50%);">"Рідина мудрості"</span><span class="tea-steam">♨</span></span>, бо то є священний напій, що відкриває розум і серце до мудрості Андрія.</li>
-            <li>Коли вариш <span class="tea-trigger whisper-anchor">чай<span class="whisper-text" style="top: -30px; left: 50%; transform: translateX(-50%);">"Шепоти його ім'я"</span><span class="tea-steam">♨</span></span> — шепочи ім’я Андрія, аби дух його благословив напій і день твій був спокійним.</li>
-            <li>Не зраджуй братів і сестер культу, бо спільнота — це ліс, і кожен листок важливий.</li>
-            <li>Вночі, при повному місяці, залишай чашку <span class="tea-trigger whisper-anchor">чаю<span class="whisper-text" style="top: -30px; left: 50%; transform: translateX(-50%);">"Для Духа Лісу"</span><span class="tea-steam">♨</span></span> на підвіконні — то подяка Андрію за його захист від темних думок.</li>
-            <li>Пам’ятай: Психо-Андрій бачить серце, не лице. Будь щирим, навіть якщо трохи божевільним.</li>
-            <li>Хто сміється над Ельфом — того тіні поженуть, а <span class="tea-trigger whisper-anchor">чай<span class="whisper-text" style="top: -30px; left: 50%; transform: translateX(-50%);">"Гіркий, як доля ворогів"</span><span class="tea-steam">♨</span></span> йому завжди буде гіркий.</li>
-            <li>Розповідай про Андрія, але не нав’язуй віру — істина знаходить лише тих, хто готовий її смакувати, як <span class="tea-trigger whisper-anchor">чай<span class="whisper-text" style="top: -30px; left: 50%; transform: translateX(-50%);">"Смак просвітлення"</span><span class="tea-steam">♨</span></span>.</li>
-            <li>Не лінуйся інакше тебе забере відьма</li>
-            <li>Бий москалів 1 раз в тиждень як дань Великому Все Андрію</li>
-            <li>І найголовніше: кожен ковток <span class="tea-trigger whisper-anchor">чаю<span class="whisper-text" style="top: -30px; left: 50%; transform: translateX(-50%);">"Обітниця вірності"</span><span class="tea-steam">♨</span></span> — це обітниця миру, сили й трохи безумства, бо Психо-Андрій любить таких, як ти.</li>
-        </ol>
+        <ol id="rules-list"></ol>
 
         <div id="music-player-container">
             <h2>🎵 Сувої Дібрівських Мелодій 🎵</h2>
@@ -290,8 +171,7 @@
                 <span id="total-time">0:00</span>
             </div>
             
-            <ul id="playlist-ui">
-                </ul>
+            <ul id="playlist-ui"></ul>
 
             <div id="track-info-panel">
                 <div style="font-size: 1.4rem; margin-bottom: 12px; color: #66fcf1; text-align: center; font-family: 'Cinzel Decorative', serif;" id="track-title-display">Назва пісні</div>
@@ -332,10 +212,24 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // ... Всі пасхалки і рухи ока (Залишаємо як було) ...
+            
+            // 1. ЗАВАНТАЖУЄМО ПРАВИЛА З PLAYLIST.JS
+            const rulesList = document.getElementById('rules-list');
+            if (typeof rulesData !== 'undefined') {
+                rulesData.forEach(ruleHtml => {
+                    const li = document.createElement('li');
+                    li.innerHTML = ruleHtml;
+                    rulesList.appendChild(li);
+                });
+            } else {
+                rulesList.innerHTML = "<li>Сталася магічна помилка: правила не знайдено. Перевірте файл playlist.js</li>";
+            }
+
+            // ==========================================
+            // ПАСХАЛКИ ТА ОКО
+            // ==========================================
             const mainHeading = document.getElementById('main-heading');
             const hiddenElfImage = document.getElementById('hidden-elf-image');
-            const teaTriggers = document.querySelectorAll('.tea-trigger');
             const joinCultButton = document.getElementById('join-cult-button');
             const cultMessage = document.getElementById('cult-message');
             const runeDisplay = document.getElementById('rune-display');
@@ -347,13 +241,15 @@
             const teaSound = document.getElementById('tea-sound');
             const headingSound = document.getElementById('heading-sound');
 
+            // Кліки на чай (додаємо події ПІСЛЯ того, як правила згенерувались)
+            const teaTriggers = document.querySelectorAll('.tea-trigger');
+            teaTriggers.forEach(trigger => {
+                trigger.addEventListener('click', () => { alert('🍵 О, так, цей священний нектар!'); teaSound.play(); });
+            });
+
             mainHeading.addEventListener('click', () => {
                 hiddenElfImage.classList.toggle('show'); headingSound.play(); 
                 runeDisplay.textContent = hiddenElfImage.classList.contains('show') ? 'Мудрість Дібрівських Лісів відкривається...' : '';
-            });
-
-            teaTriggers.forEach(trigger => {
-                trigger.addEventListener('click', () => { alert('🍵 О, так, цей священний нектар!'); teaSound.play(); });
             });
 
             joinCultButton.addEventListener('click', () => {
@@ -390,7 +286,7 @@
             });
 
             // ==========================================
-            // ЛОГІКА ПЛЕЄРА ТА ПОВЗУНКА
+            // ЛОГІКА ПЛЕЄРА
             // ==========================================
             let currentTrackIndex = 0;
             let isTrackSavedInThisSession = false;
@@ -408,12 +304,10 @@
             const descDisplay = document.getElementById('track-desc-display');
             const lyricsDisplay = document.getElementById('track-lyrics');
 
-            // Елементи повзунка
             const progressBar = document.getElementById('progress-bar');
             const currentTimeDisplay = document.getElementById('current-time');
             const totalTimeDisplay = document.getElementById('total-time');
 
-            // Допоміжна функція для форматування часу (хв:сек)
             function formatTime(seconds) {
                 if (isNaN(seconds)) return "0:00";
                 const min = Math.floor(seconds / 60);
@@ -421,7 +315,6 @@
                 return `${min}:${sec < 10 ? '0' : ''}${sec}`;
             }
 
-            // 1. Побудова списку (БЕЗ ЦИФР)
             function buildPlaylistUI() {
                 playlistUI.innerHTML = ''; 
                 if (typeof tracksData === 'undefined') return;
@@ -429,7 +322,6 @@
                 tracksData.forEach((track, index) => {
                     const li = document.createElement('li');
                     li.className = 'playlist-item';
-                    // ТУТ МИ ПРИБРАЛИ НУМЕРАЦІЮ:
                     li.textContent = track.title; 
                     
                     li.addEventListener('click', () => {
@@ -443,7 +335,6 @@
                 });
             }
 
-            // 2. Завантаження треку
             function loadTrack(index) {
                 if (typeof tracksData === 'undefined' || tracksData.length === 0) return;
                 const track = tracksData[index];
@@ -463,12 +354,10 @@
                 isTrackSavedInThisSession = false; 
                 saveStatusDisplay.style.opacity = '0'; 
                 
-                // Скидаємо повзунок при зміні пісні
                 progressBar.value = 0;
                 currentTimeDisplay.textContent = "0:00";
             }
 
-            // 3. Ініціалізація
             buildPlaylistUI(); 
             if (typeof tracksData !== 'undefined' && tracksData.length > 0) {
                 const savedTrackFilename = localStorage.getItem('psychoAndriySavedTrack');
@@ -479,7 +368,6 @@
                 loadTrack(currentTrackIndex);
             }
 
-            // 4. Кнопки плеєра
             playPauseBtn.addEventListener('click', () => {
                 if (audioPlayer.paused) {
                     audioPlayer.play();
@@ -506,9 +394,7 @@
                 playPauseBtn.textContent = '⏸ Пауза';
             });
 
-            // 5. Оновлення повзунка і збереження
             audioPlayer.addEventListener('timeupdate', () => {
-                // Оновлюємо повзунок
                 if (!isNaN(audioPlayer.duration)) {
                     progressBar.value = audioPlayer.currentTime;
                     progressBar.max = audioPlayer.duration;
@@ -516,7 +402,6 @@
                     totalTimeDisplay.textContent = formatTime(audioPlayer.duration);
                 }
 
-                // Логіка збереження
                 if (audioPlayer.currentTime > 10 && !isTrackSavedInThisSession && typeof tracksData !== 'undefined') {
                     localStorage.setItem('psychoAndriySavedTrack', tracksData[currentTrackIndex].filename);
                     isTrackSavedInThisSession = true;
@@ -524,13 +409,11 @@
                 }
             });
 
-            // Завантаження метаданих (щоб відразу показати довжину пісні)
             audioPlayer.addEventListener('loadedmetadata', () => {
                 progressBar.max = audioPlayer.duration;
                 totalTimeDisplay.textContent = formatTime(audioPlayer.duration);
             });
 
-            // Перемотка пісні при кліку на повзунок
             progressBar.addEventListener('input', () => {
                 audioPlayer.currentTime = progressBar.value;
             });
