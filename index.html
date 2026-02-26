@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Святилище Психо-Андрія: Культ Дібрівських Лісів</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍵</text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Spectral:wght@400;700&display=swap" rel="stylesheet">
     <style>
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -52,37 +53,36 @@
         h1:hover { color: #9effa1; text-shadow: 0 0 25px #9effa1, 0 0 40px #66fcf1; transform: scale(1.02); }
         h2 { font-family: 'Cinzel Decorative', serif; color: #66fcf1; border-bottom: 2px solid #45a29e; padding-bottom: 15px; margin-top: 40px; font-size: 2.2rem; text-shadow: 0 0 10px rgba(102, 252, 241, 0.4); letter-spacing: 1px; }
 
-        /* === ВИПРАВЛЕНА НУМЕРАЦІЯ (FLEXBOX) === */
-        ol {
+        /* === ВИПРАВЛЕНА НУМЕРАЦІЯ (ТІЛЬКИ ДЛЯ ПРАВИЛ) === */
+        #rules-list {
             list-style: none;
             padding: 0;
             margin-top: 30px;
             counter-reset: rule-counter;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
             text-align: left;
         }
 
-        li {
-            display: flex;
-            align-items: flex-start;
+        #rules-list li {
+            position: relative;
+            padding-left: 60px; /* Збільшений відступ для цифр */
+            margin-bottom: 25px;
             font-size: 1.25rem;
-            line-height: 1.6;
+            line-height: 1.7;
             transition: transform 0.2s ease-out, color 0.3s;
         }
 
-        li:hover { transform: translateX(8px); color: #e0f2f1; }
+        #rules-list li:hover { transform: translateX(8px); color: #e0f2f1; }
 
-        li::before {
+        #rules-list li::before {
             counter-increment: rule-counter;
             content: "◆ " counter(rule-counter) ".";
             color: #66fcf1;
             font-weight: bold;
-            min-width: 55px; /* Фіксована ширина під номер */
-            flex-shrink: 0; /* Цифри ніколи не будуть стискатися */
-            text-align: right; /* Рівняємо по правому краю */
-            margin-right: 15px; /* Відступ від тексту */
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 45px;
+            text-align: right;
         }
 
         /* === ІНШІ СТИЛІ === */
@@ -116,6 +116,7 @@
         input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%; background: #66fcf1; box-shadow: 0 0 10px #66fcf1; transition: transform 0.1s; }
         input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.3); }
 
+        /* Видалено будь-які конфлікти ::before для плейлиста */
         #playlist-ui { list-style: none; padding: 5px; margin: 0; border-top: 1px solid rgba(69, 162, 158, 0.5); border-bottom: 1px solid rgba(69, 162, 158, 0.5); max-height: 160px; overflow-y: auto; background-color: rgba(0, 0, 0, 0.2); border-radius: 8px; }
         .playlist-item { padding: 12px 15px; cursor: pointer; border-bottom: 1px solid rgba(69, 162, 158, 0.2); transition: all 0.2s; text-align: left; font-size: 1.1rem; border-radius: 4px; }
         .playlist-item:last-child { border-bottom: none; }
@@ -241,11 +242,13 @@
             const teaSound = document.getElementById('tea-sound');
             const headingSound = document.getElementById('heading-sound');
 
-            // Кліки на чай (додаємо події ПІСЛЯ того, як правила згенерувались)
-            const teaTriggers = document.querySelectorAll('.tea-trigger');
-            teaTriggers.forEach(trigger => {
-                trigger.addEventListener('click', () => { alert('🍵 О, так, цей священний нектар!'); teaSound.play(); });
-            });
+            // Оскільки правила генеруються динамічно, шукаємо "чай" із затримкою
+            setTimeout(() => {
+                const teaTriggers = document.querySelectorAll('.tea-trigger');
+                teaTriggers.forEach(trigger => {
+                    trigger.addEventListener('click', () => { alert('🍵 О, так, цей священний нектар!'); teaSound.play(); });
+                });
+            }, 100);
 
             mainHeading.addEventListener('click', () => {
                 hiddenElfImage.classList.toggle('show'); headingSound.play(); 
