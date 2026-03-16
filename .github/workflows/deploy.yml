@@ -1,8 +1,9 @@
-name: Deploy to GitHub Pages
+name: Deploy static content to Pages
 
 on:
   push:
-    branches: ["main"]
+    branches: ['main']
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -11,7 +12,7 @@ permissions:
 
 concurrency:
   group: "pages"
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   deploy:
@@ -26,6 +27,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          # Кешування вимкнено, оскільки немає package-lock.json
       - name: Install dependencies
         run: npm install
       - name: Build
