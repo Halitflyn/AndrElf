@@ -1,6 +1,21 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Shuffle, Repeat, SkipBack, Play, Pause, SkipForward, Heart, HeartOff, Volume2 } from 'lucide-react';
 import { rulesData, tracksData } from './data';
+
+const RulesList = React.memo(({ rules, onTeaClick }: { rules: string[], onTeaClick: (e: React.MouseEvent) => void }) => {
+  return (
+    <ol className="list-none p-0 mt-6 sm:mt-8 text-left" style={{ counterReset: 'rule-counter' }} onClick={onTeaClick}>
+      {rules.map((rule, idx) => (
+        <li key={idx} className="relative pl-10 sm:pl-14 mb-5 sm:mb-6 text-lg sm:text-xl leading-relaxed transition-transform duration-200 hover:translate-x-2 hover:text-[#e0f2f1]">
+          <span className="absolute left-0 top-0 w-8 sm:w-11 text-right text-neon-cyan font-bold">
+            ◆ {idx + 1}.
+          </span>
+          <span dangerouslySetInnerHTML={{ __html: rule }} />
+        </li>
+      ))}
+    </ol>
+  );
+});
 
 export default function App() {
   // --- Refs ---
@@ -238,7 +253,7 @@ export default function App() {
     }
   };
 
-  const handleTeaClick = (e: React.MouseEvent) => {
+  const handleTeaClick = useCallback((e: React.MouseEvent) => {
     if ((e.target as HTMLElement).closest('.tea-trigger')) {
       alert('🍵 О, так, цей священний нектар!');
       if (teaSoundRef.current) {
@@ -246,7 +261,7 @@ export default function App() {
         teaSoundRef.current.play();
       }
     }
-  };
+  }, []);
 
   const currentTrack = tracksData[currentTrackIndex];
 
@@ -312,16 +327,7 @@ export default function App() {
         <h2 className="font-cinzel text-neon-cyan border-b-2 border-neon-teal pb-3 sm:pb-4 mt-8 sm:mt-10 text-2xl sm:text-3xl md:text-4xl drop-shadow-[0_0_10px_rgba(102,252,241,0.4)] tracking-wide">
           📜 Святі правила культу Психо-Андрія
         </h2>
-        <ol className="list-none p-0 mt-6 sm:mt-8 text-left" style={{ counterReset: 'rule-counter' }} onClick={handleTeaClick}>
-          {rulesData.map((rule, idx) => (
-            <li key={idx} className="relative pl-10 sm:pl-14 mb-5 sm:mb-6 text-lg sm:text-xl leading-relaxed transition-transform duration-200 hover:translate-x-2 hover:text-[#e0f2f1]">
-              <span className="absolute left-0 top-0 w-8 sm:w-11 text-right text-neon-cyan font-bold">
-                ◆ {idx + 1}.
-              </span>
-              <span dangerouslySetInnerHTML={{ __html: rule }} />
-            </li>
-          ))}
-        </ol>
+        <RulesList rules={rulesData} onTeaClick={handleTeaClick} />
 
         {/* Music Player */}
         <div className="mt-8 sm:mt-12 p-4 sm:p-8 border border-neon-teal rounded-xl bg-gradient-to-br from-[#1a1a1d]/90 to-[#0f0f12]/95 shadow-[0_10px_30px_rgba(0,0,0,0.5),0_0_15px_rgba(69,162,158,0.3)] flex flex-col gap-4">
