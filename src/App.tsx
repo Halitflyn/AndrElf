@@ -99,48 +99,35 @@ export default function App() {
     }
   }, [volume]);
 
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    const handleTimeUpdate = () => {
-      setProgress(audio.currentTime);
-      
-      // Save track if played for more than 10 seconds
-      if (audio.currentTime > 10) {
-        localStorage.setItem('psychoAndriySavedTrack', tracksData[currentTrackIndex].filename);
-        setSaveStatusOpacity(1);
-        setTimeout(() => setSaveStatusOpacity(0), 3000);
-      }
-    };
-
-    const handleLoadedMetadata = () => {
-      setDuration(audio.duration);
-    };
-
-    const handleEnded = () => {
-      playNextLogic(1);
-    };
-
-    audio.addEventListener('timeupdate', handleTimeUpdate);
-    audio.addEventListener('loadedmetadata', handleLoadedMetadata);
-    audio.addEventListener('ended', handleEnded);
-
-    return () => {
-      audio.removeEventListener('timeupdate', handleTimeUpdate);
-      audio.removeEventListener('loadedmetadata', handleLoadedMetadata);
-      audio.removeEventListener('ended', handleEnded);
-    };
-  }, [currentTrackIndex, isRepeat, isShuffle, isLikedMode, likedTracks, dislikedTracks]);
-
   // Play/Pause effect when track changes
   useEffect(() => {
     if (isPlaying && audioRef.current) {
       audioRef.current.play().catch(e => console.log("Audio play prevented:", e));
     }
-  }, [currentTrackIndex]);
+  }, [currentTrackIndex, isPlaying]);
 
   // --- Handlers ---
+
+  const handleTimeUpdate = () => {
+    if (!audioRef.current) return;
+    setProgress(audioRef.current.currentTime);
+    
+    // Save track if played for more than 10 seconds
+    if (audioRef.current.currentTime > 10) {
+      localStorage.setItem('psychoAndriySavedTrack', tracksData[currentTrackIndex].filename);
+      setSaveStatusOpacity(1);
+      setTimeout(() => setSaveStatusOpacity(0), 3000);
+    }
+  };
+
+  const handleLoadedMetadata = () => {
+    if (!audioRef.current) return;
+    setDuration(audioRef.current.duration);
+  };
+
+  const handleEnded = () => {
+    playNextLogic(1);
+  };
 
   const formatTime = (seconds: number) => {
     if (isNaN(seconds)) return "0:00";
@@ -268,7 +255,15 @@ export default function App() {
   return (
     <div className="min-h-screen p-2 sm:p-5 flex flex-col items-center overflow-x-hidden">
       {/* Hidden Audio Elements */}
-      <audio ref={audioRef} src={currentTrack?.url} preload="auto" />
+      <audio 
+        ref={audioRef} 
+        src={currentTrack?.url} 
+        preload="auto" 
+        onTimeUpdate={handleTimeUpdate}
+        onLoadedMetadata={handleLoadedMetadata}
+        onEnded={handleEnded}
+        autoPlay={isPlaying}
+      />
       <audio ref={teaSoundRef} src="https://www.soundjay.com/buttons/beep-07a.mp3" preload="auto" />
       <audio ref={headingSoundRef} src="https://www.soundjay.com/buttons/button-10.mp3" preload="auto" />
 
