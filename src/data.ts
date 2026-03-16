@@ -15,7 +15,7 @@ export const rulesData = [
 export const tracksData = [
     {
         filename: 'ПідПідвальє.mp3', 
-        url: 'music/ПідПідвальє.mp3',
+        url: '/AndrElf/music/ПідПідвальє.mp3',
         title: 'ПідПідвальє', 
         author: 'fehykitop',
         coAuthor: 'Andrelf',
@@ -66,7 +66,7 @@ export const tracksData = [
     }, 
       {
         filename: 'Dark folk Andrelf.mp3', 
-        url: 'music/Dark folk Andrelf.mp3',
+        url: '/AndrElf/music/Dark folk Andrelf.mp3',
         title: 'Дарк Фолк про Андрельфа', 
         author: 'fehykitop',
         coAuthor: 'Andrelf',
@@ -127,7 +127,7 @@ export const tracksData = [
     },
       {
         filename: 'Андрельф Вернись.mp3', 
-        url: 'music/Андрельф Вернись.mp3',
+        url: '/AndrElf/music/Андрельф Вернись.mp3',
         title: 'Андрельф Вернись', 
         author: 'fehykitop',
         coAuthor: 'Andrelf',
@@ -161,7 +161,7 @@ export const tracksData = [
     }, 
       {
         filename: 'Андрельф козак Дібрівській.mp3', 
-        url: 'music/Андрельф козак Дібрівській.mp3',
+        url: '/AndrElf/music/Андрельф козак Дібрівській.mp3',
         title: 'Андрельф козак Дібрівський', 
         author: 'fehykitop',
         coAuthor: 'Andrelf',
@@ -207,7 +207,7 @@ export const tracksData = [
     }, 
       {
         filename: 'Всі спокою щиро прагнуть.mp3', 
-        url: 'music/Всі спокою щиро прагнуть.mp3',
+        url: '/AndrElf/music/Всі спокою щиро прагнуть.mp3',
         title: 'Всі спокою щиро прагнуть', 
         author: 'fehykitop',
         coAuthor: 'Andrelf',
@@ -275,7 +275,7 @@ export const tracksData = [
     }, 
       {
         filename: 'За сотку смерть нам не страшна! не страшна!.mp3', 
-        url: 'music/За сотку смерть нам не страшна! не страшна!.mp3',
+        url: '/AndrElf/music/За сотку смерть нам не страшна! не страшна!.mp3',
         title: 'За сотку смерть нам не страшна! не страшна!', 
         author: 'fehykitop',
         coAuthor: 'Andrelf',
@@ -324,7 +324,7 @@ export const tracksData = [
     }, 
       {
         filename: 'СВАТИНЯ.mp3', 
-        url: 'music/СВАТИНЯ.mp3',
+        url: '/AndrElf/music/СВАТИНЯ.mp3',
         title: 'Сватиня', 
         author: 'fehykitop',
         coAuthor: 'Andrelf',
@@ -355,7 +355,7 @@ export const tracksData = [
     }, 
       {
         filename: 'Святі_правила_культу_Психо_Андрія.mp3', 
-        url: 'music/Святі_правила_культу_Психо_Андрія.mp3',
+        url: '/AndrElf/music/Святі_правила_культу_Психо_Андрія.mp3',
         title: 'Святі_правила_культу_Психо_Андрія.mp3', 
         author: 'fehykitop',
         coAuthor: 'Andrelf',
@@ -386,7 +386,7 @@ export const tracksData = [
     }, 
     {
         filename: 'Святі_правила_культу_Психо_Андрія_Друга_Версія.mp3', 
-        url: 'music/Святі_правила_культу_Психо_Андрія_Друга_Версія.mp3',
+        url: '/AndrElf/music/Святі_правила_культу_Психо_Андрія_Друга_Версія.mp3',
         title: 'Святі_правила_культу_Психо_Андрія_Друга_Версія.mp3', 
         author: 'fehykitop',
         coAuthor: 'Andrelf',
